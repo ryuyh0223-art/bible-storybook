@@ -174,13 +174,16 @@ body {
     border-radius: 15px;
     box-shadow: 0 5px 20px var(--color-shadow);
     background: var(--color-white);
+    /* 빈 공간은 흰색 배경 */
 }
 
 .image-slider {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9;
-    max-height: 35vh;
+    aspect-ratio: 4 / 3;
+    /* 변경: 16:9보다 세로가 더 긴 4:3 비율로 설정하여 더 많은 이미지 영역 확보 */
+    max-height: 50vh;
+    /* 모바일에서도 높이 넉넉하게 */
 }
 
 .image-slide {
@@ -190,6 +193,12 @@ body {
     opacity: 0;
     transform: translateX(100%);
     transition: all var(--page-transition) ease-in-out;
+    background: var(--color-white);
+    /* 슬라이드 배경 추가 */
+    display: flex;
+    align-items: center;
+    /* 이미지 수직 중앙 정렬 */
+    justify-content: center;
 }
 
 .image-slide.active {
@@ -204,7 +213,8 @@ body {
 .image-slide img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    /* 중요: 이미지가 절대 잘리지 않고 전체가 다 보이도록 설정 */
     display: block;
 }
 
@@ -429,7 +439,73 @@ body.text-large .page-title {
     background: var(--color-secondary);
 }
 
-/* ===== 반응형 디자인 ===== */
+/* ===== 데스크탑/태블릿 최적화 (사이즈 이원화) ===== */
+@media (min-width: 1024px) {
+    :root {
+        --font-size-base: 1.2rem;
+    }
+
+    .main-content {
+        max-width: 1200px;
+        padding: 2rem;
+    }
+
+    .book-container {
+        padding: 2.5rem;
+    }
+
+    .title {
+        font-size: 1.8rem;
+    }
+
+    .image-container {
+        max-width: 1000px;
+        box-shadow: none;
+        /* 그림자 제거 (이미지와 배경 경계 자연스럽게) */
+        background: transparent;
+    }
+
+    .image-slider {
+        max-height: 60vh;
+        /* 높이 제한 좀 더 여유있게 */
+        aspect-ratio: auto;
+        /* 비율 강제 해제 */
+        height: 60vh;
+        /* 고정 높이 할당 */
+    }
+
+    .image-slide img {
+        object-fit: contain;
+        /* 이미지가 잘리지 않고 전체가 보이도록 설정 */
+        background: var(--color-bg);
+        /* 여백이 생기면 배경색으로 채움 */
+    }
+
+    .nav-btn {
+        width: 80px;
+        height: 80px;
+        font-size: 2.5rem;
+        box-shadow: 0 6px 20px var(--color-shadow);
+    }
+
+    .btn-music {
+        width: 50px;
+        height: 50px;
+        font-size: 1.4rem;
+    }
+
+    .page-title {
+        font-size: 2rem;
+    }
+
+    .page-content p {
+        /* 줄간격 넉넉하게 */
+        line-height: 2;
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* ===== 반응형 디자인 (모바일) ===== */
 @media (max-width: 768px) {
     .header {
         padding: 0.8rem 1rem;
