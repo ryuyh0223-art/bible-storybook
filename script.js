@@ -1,6 +1,6 @@
 // ===== 전역 변수 =====
 let currentPage = 0;
-const totalPages = 4;
+const totalPages = 6;
 let isMusicPlaying = false;
 let youtubePlayer = null;
 let isYouTubeReady = false;
@@ -103,47 +103,40 @@ function changePage(direction) {
 
     // 현재 페이지 숨기기
     imageSlides[currentPage].classList.remove('active');
-    imageSlides[currentPage].classList.add('page-turn-exit');
     textPages[currentPage].classList.remove('active');
     dots[currentPage].classList.remove('active');
 
     // 새 페이지 표시
-    setTimeout(() => {
-        imageSlides[currentPage].classList.remove('page-turn-exit');
+    currentPage = newPage;
 
-        currentPage = newPage;
+    imageSlides[currentPage].classList.add('active');
+    textPages[currentPage].classList.add('active');
+    dots[currentPage].classList.add('active');
 
-        imageSlides[currentPage].classList.add('page-turn-enter', 'active');
-        textPages[currentPage].classList.add('active');
-        dots[currentPage].classList.add('active');
+    updateNavigationButtons();
 
-        setTimeout(() => {
-            imageSlides[currentPage].classList.remove('page-turn-enter');
-        }, 600);
-
-        updateNavigationButtons();
-
-        // 페이지가 변경되면 맨 위로 스크롤
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 100);
+    // 페이지가 변경되면 맨 위로 스크롤
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // ===== 특정 페이지로 이동 =====
 function goToPage(pageIndex) {
     if (pageIndex === currentPage) return;
 
-    const direction = pageIndex > currentPage ? 1 : -1;
-    const steps = Math.abs(pageIndex - currentPage);
+    // 현재 페이지 숨기기
+    imageSlides[currentPage].classList.remove('active');
+    textPages[currentPage].classList.remove('active');
+    dots[currentPage].classList.remove('active');
 
-    // 한 번에 여러 페이지를 넘기지 않고, 한 페이지씩 이동
-    let step = 0;
-    const interval = setInterval(() => {
-        changePage(direction);
-        step++;
-        if (step >= steps) {
-            clearInterval(interval);
-        }
-    }, 100);
+    // 새 페이지 표시
+    currentPage = pageIndex;
+
+    imageSlides[currentPage].classList.add('active');
+    textPages[currentPage].classList.add('active');
+    dots[currentPage].classList.add('active');
+
+    updateNavigationButtons();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // ===== 네비게이션 버튼 업데이트 =====
