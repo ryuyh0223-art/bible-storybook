@@ -44,6 +44,7 @@ function onPlayerStateChange(event) {
 // DOM 요소
 const imageSlides = document.querySelectorAll('.image-slide');
 const textPages = document.querySelectorAll('.text-page');
+const textContainer = document.getElementById('textContainer');
 const dots = document.querySelectorAll('.dot');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
@@ -116,7 +117,7 @@ function changePage(direction) {
     updateNavigationButtons();
 
     // 페이지가 변경되면 맨 위로 스크롤
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    textContainer.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // ===== 특정 페이지로 이동 =====
@@ -136,7 +137,7 @@ function goToPage(pageIndex) {
     dots[currentPage].classList.add('active');
 
     updateNavigationButtons();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    textContainer.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // ===== 네비게이션 버튼 업데이트 =====
