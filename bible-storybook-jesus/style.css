@@ -142,7 +142,7 @@ body {
 .main-content {
     position: relative;
     flex: 1;
-    padding: 1.5rem;
+    padding: 0;
     width: 100%;
     overflow: hidden;
     display: flex;
@@ -163,13 +163,10 @@ body {
     top: 0;
     z-index: 100;
     width: 100%;
-    max-width: 800px;
-    margin: 0 auto 2rem;
+    max-width: 100%;
+    margin: 0;
     overflow: hidden;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px var(--color-shadow);
-    background: var(--color-white);
-    /* 빈 공간은 흰색 배경 */
+    background: var(--color-bg);
 }
 
 .image-slider {
@@ -212,8 +209,9 @@ body {
     flex: 1;
     overflow-y: auto;
     overflow-x: hidden;
-    padding-right: 1rem;
-    margin-top: 1rem;
+    padding: 1rem 1.5rem;
+    /* Add horizontal padding back to text */
+    margin-top: 0.5rem;
 
     /* 스크롤바 스타일 */
     scrollbar-width: thin;
@@ -401,14 +399,13 @@ body.text-large .page-title {
     }
 
     .main-content {
-        max-width: 1200px;
-        padding: 2rem;
+        max-width: 100%;
+        padding: 0;
     }
 
     .book-container {
-        padding: 2.5rem;
+        padding: 0;
         flex-direction: column;
-        /* 세로 배치 복구 (안전성 최우선) */
         gap: 0;
     }
 
@@ -419,8 +416,8 @@ body.text-large .page-title {
     .image-container {
         flex: none;
         width: 100%;
-        max-width: 1000px;
-        margin: 0 auto 2rem;
+        max-width: 100%;
+        margin: 0;
         position: sticky;
         top: 0;
         box-shadow: none;
@@ -497,7 +494,7 @@ body.text-large .page-title {
     }
 
     .book-container {
-        padding: 1rem;
+        padding: 0;
     }
 
     .page-title {
@@ -517,7 +514,7 @@ body.text-large .page-title {
 
 @media (max-width: 480px) {
     .main-content {
-        padding: 1rem;
+        padding: 0;
     }
 
     .controls {
