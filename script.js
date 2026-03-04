@@ -1,6 +1,5 @@
 // ===== 전역 변수 =====
 let currentPage = 0;
-const totalPages = 6;
 let isMusicPlaying = false;
 let youtubePlayer = null;
 let isYouTubeReady = false;
@@ -43,6 +42,7 @@ function onPlayerStateChange(event) {
 
 // DOM 요소
 const imageSlides = document.querySelectorAll('.image-slide');
+const totalPages = imageSlides.length;
 const textPages = document.querySelectorAll('.text-page');
 const textContainer = document.getElementById('textContainer');
 const dots = document.querySelectorAll('.dot');
