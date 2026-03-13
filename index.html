@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>드라마틱 에필로그: 쉬어</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- 오디오 요소 (배경음악) -->
+        <audio id="bg-music" loop>
+            <source src="bgm.mp3" type="audio/mpeg">
+        </audio>
+        <button id="music-btn" class="music-btn">🎵 BGM 켜기</button>
+
+        <div class="story-container" id="story-container">
+            <!-- 페이지 내용이 JavaScript에 의해 여기에 렌더링됩니다. -->
+        </div>
+
+        <div class="navigation">
+            <button id="prev-btn" class="nav-btn" disabled>이전</button>
+            <div id="page-indicator" class="page-indicator">1 / x</div>
+            <button id="next-btn" class="nav-btn">다음</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
