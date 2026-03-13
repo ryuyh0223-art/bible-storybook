@@ -311,3 +311,40 @@ body {
   from { opacity: 0; transform: translateY(22px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+/* 묵상 페이지 전용 스타일 (FullScreen) */
+.reflection-page {
+  background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100%;
+}
+
+.reflection-wrapper {
+  z-index: 5;
+  width: 90%;
+  max-width: 440px;
+  animation: slideUp 0.8s ease-out;
+}
+
+.reflection-section {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  padding: 30px 25px;
+  border-radius: 24px;
+  color: #fff;
+  text-align: left;
+}
+
+/* 기존 story-text에서 p 대신 div로 구조 변경 대응 */
+div.story-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    text-align: center;
+    word-break: keep-all;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    padding-bottom: 20px;
+}

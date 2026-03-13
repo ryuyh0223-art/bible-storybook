@@ -63,7 +63,7 @@ const pages = [
         text: "[Scene 4]<br>실수하면 안 된다는 강박이 여러분의 숨을 옥죄고 있나요? 이제 내가 내 인생의 에이스가 될 필요가 없습니다. 십자가에서 모든 것을 완성하신 진짜 에이스, 예수님이 등판하셨습니다!"
     },
     {
-        image: "KakaoTalk_20260313_182657595_28.jpg",
+        image: "KakaoTalk_20260313_182657595_26.jpg",
         text: "예수님이 기적 후 사람들을 눕힌 곳은 바닥이 아니라 '푸른 잔디'였습니다.<br>완벽해야 한다는 강박을 내려놓고, 나를 대신해 피 흘리신 예수님의 평안한 품('푸른 잔디')에 안기는 것. 그것이 진짜 '쉼'입니다."
     },
     {
@@ -71,8 +71,8 @@ const pages = [
         text: "오늘 밤, 자녀와 서로 손을 잡고 내일을 응원해 주세요.<br><em>'네가 완벽해야 하나님이 사랑하시는 게 아니야. 우리 고민을 주님께 맡기고, 푸른 잔디 위에서 조금 쉬어가자.'</em>"
     },
     {
-        image: "KakaoTalk_20260313_182657595.jpg",
-        text: "<div class='reflection-section'>🗣️ <strong>[묵상 대화]</strong><br><ul class='reflection-list'><li><strong>(자녀에게 질문)</strong> 새 학기가 시작되고, 너를 가장 짓누르는 '200 데나리온'은 요즘 뭐야? 네가 완벽해야 한다고 느껴서 숨 막히는 부분이 있어?</li><li><strong>(부모님 이야기)</strong> 엄마/아빠도 예전에 그런 강박을 느낀 적이 있단다. 우리의 초라한 '오병이어'를 어떻게 예수님께 맡길 수 있을까?</li></ul>🙏 <strong>[가족 기도]</strong><br>'완벽해야 한다는 불안을 내려놓고 주님 품에서 쉬게 하소서.'</div>"
+        type: 'reflection',
+        text: `<div class='reflection-section'>🗣️ <strong>[묵상 대화]</strong><br><ul class='reflection-list'><li><strong>(자녀에게 질문)</strong> 새 학기가 시작되고, 너를 가장 짓누르는 '200 데나리온'은 뭐야? 네가 완벽해야 한다고 느껴서 숨 막히는 부분이 있어?</li><li><strong>(부모님 이야기)</strong> 엄마/아빠도 예전에 그런 강박을 느낀 적이 있단다. 우리의 초라한 '오병이어'를 어떻게 예수님께 맡길 수 있을까?</li></ul>🙏 <strong>[가족 기도]</strong><br>'완벽해야 한다는 불안을 내려놓고 주님 품에서 쉬게 하소서.'</div>`
     }
 ];
 
@@ -121,6 +121,21 @@ const App = {
             return;
         }
 
+        // 묵상 질문 페이지 (FullScreen)
+        if (page.type === 'reflection') {
+            this.container.innerHTML = `
+        <div class="page-content reflection-page fade-in">
+          <div class="reflection-wrapper">
+             ${page.text}
+          </div>
+        </div>
+      `;
+            this.pageIndicator.innerText = `${index + 1} / ${pages.length}`;
+            this.nextBtn.innerText = '처음으로';
+            this.prevBtn.disabled = false;
+            return;
+        }
+
         // 일반 페이지 렌더링
         this.container.innerHTML = `
       <div class="page-content fade-in">
@@ -128,7 +143,7 @@ const App = {
           <img src="${page.image}" alt="이야기 일러스트" class="story-image">
         </div>
         <div class="text-wrapper">
-          <p class="story-text">${page.text}</p>
+          <div class="story-text">${page.text}</div>
         </div>
       </div>
     `;
