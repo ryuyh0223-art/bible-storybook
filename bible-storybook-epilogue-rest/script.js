@@ -1,6 +1,9 @@
 const pages = [
     {
-        image: "KakaoTalk_20260313_182657595.jpg", // Title image
+        type: 'hook' // Special hook page — no image or normal text
+    },
+    {
+        image: "KakaoTalk_20260313_182657595.jpg",
         text: "<span class='title-text'>드라마틱<br>에필로그</span><br><br><span class='title-sub'>이번 주 고등부 설교, 우리 아이들 마음속엔 어떻게 남았을까요?</span>"
     },
     {
@@ -89,7 +92,37 @@ const App = {
     renderPage(index) {
         const page = pages[index];
 
-        // 페이지 렌더링
+        // 특별 후킹 페이지 (index 0)
+        if (page.type === 'hook') {
+            this.container.innerHTML = `
+        <div class="hook-page fade-in" id="hook-page">
+          <div class="hook-bg-gradient"></div>
+          <div class="hook-content">
+            <div class="hook-tag anim-slide-up" style="animation-delay:0.1s">마가복음 6:30–44 · 고등부 설교</div>
+            <h1 class="hook-title anim-slide-up" style="animation-delay:0.35s">
+              <span class="hook-accent">쉬어</span>
+            </h1>
+            <p class="hook-subtitle anim-slide-up" style="animation-delay:0.6s">
+              지금 너의 손에 있는 것,<br>그걸로 충분해.
+            </p>
+            <div class="hook-divider anim-slide-up" style="animation-delay:0.85s"></div>
+            <p class="hook-desc anim-slide-up" style="animation-delay:1.05s">
+              드라마틱 에필로그 &mdash; 이번 주 설교가<br>
+              우리 아이들 마음에 어떻게 남았을까요?
+            </p>
+            <button class="hook-cta anim-slide-up" style="animation-delay:1.3s" onclick="App.nextPage()">
+              읽기 시작하기 <span class="hook-arrow">→</span>
+            </button>
+          </div>
+        </div>
+      `;
+            this.pageIndicator.innerText = `1 / ${pages.length}`;
+            this.nextBtn.innerText = '다음';
+            this.prevBtn.disabled = true;
+            return;
+        }
+
+        // 일반 페이지 렌더링
         this.container.innerHTML = `
       <div class="page-content fade-in">
         <div class="image-wrapper">
@@ -101,14 +134,12 @@ const App = {
       </div>
     `;
 
-        // 네비게이션 및 버튼 상태 업데이트
         this.pageIndicator.innerText = `${index + 1} / ${pages.length}`;
         if (index === pages.length - 1) {
-            this.nextBtn.innerText = "처음으로";
+            this.nextBtn.innerText = '처음으로';
         } else {
-            this.nextBtn.innerText = "다음";
+            this.nextBtn.innerText = '다음';
         }
-
         this.prevBtn.disabled = index === 0;
     },
 
