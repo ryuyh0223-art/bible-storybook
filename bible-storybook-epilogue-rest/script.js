@@ -106,10 +106,9 @@ const App = {
               지금 너의 손에 있는 것,<br>그걸로 충분해.
             </p>
             <div class="hook-divider anim-slide-up" style="animation-delay:0.85s"></div>
-            <p class="hook-desc anim-slide-up" style="animation-delay:1.05s">
-              드라마틱 에필로그 &mdash; 이번 주 설교가<br>
-              우리 아이들 마음에 어떻게 남았을까요?
-            </p>
+            <div class="hook-tag anim-slide-up" style="animation-delay:1.05s">
+              송천교회 드라마틱 고등부
+            </div>
             <button class="hook-cta anim-slide-up" style="animation-delay:1.3s" onclick="App.nextPage()">
               읽기 시작하기 <span class="hook-arrow">→</span>
             </button>
