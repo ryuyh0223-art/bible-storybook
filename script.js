@@ -4,7 +4,7 @@ const pages = [
     },
     {
         image: "KakaoTalk_20260313_182657595.jpg",
-        text: "<span class='title-text'>드라마틱<br>에필로그</span><br><br><span class='title-sub'>이번 주 고등부 설교, 우리 아이들 마음속엔 어떻게 남았을까요?</span>"
+        text: "<span class='title-text'>드라마틱<br>에필로그</span>"
     },
     {
         image: "KakaoTalk_20260313_182657595_02.jpg",
