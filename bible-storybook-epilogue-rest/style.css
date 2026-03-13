@@ -174,3 +174,19 @@ body {
         font-size: 1rem;
     }
 }
+/* 마지막 묵상 페이지 스타일 */
+.reflection-section {
+  text-align: left;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+}
+.reflection-list {
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+.reflection-list li {
+  margin-bottom: 15px;
+  line-height: 1.5;
+}

@@ -66,6 +66,10 @@ const pages = [
     {
         image: "KakaoTalk_20260313_182657595_29.jpg",
         text: "오늘 밤, 자녀와 서로 손을 잡고 내일을 응원해 주세요.<br><em>'네가 완벽해야 하나님이 사랑하시는 게 아니야. 우리 고민을 주님께 맡기고, 푸른 잔디 위에서 조금 쉬어가자.'</em>"
+    },
+    {
+        image: "KakaoTalk_20260313_182657595.jpg",
+        text: "<div class='reflection-section'>🗣️ <strong>[묵상 대화]</strong><br><ul class='reflection-list'><li><strong>(자녀에게 질문)</strong> 새 학기가 시작되고, 너를 가장 짓누르는 '200 데나리온'은 요즘 뭐야? 네가 완벽해야 한다고 느껴서 숨 막히는 부분이 있어?</li><li><strong>(부모님 이야기)</strong> 엄마/아빠도 예전에 그런 강박을 느낀 적이 있단다. 우리의 초라한 '오병이어'를 어떻게 예수님께 맡길 수 있을까?</li></ul>🙏 <strong>[가족 기도]</strong><br>'완벽해야 한다는 불안을 내려놓고 주님 품에서 쉬게 하소서.'</div>"
     }
 ];
 
