@@ -139,8 +139,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 qBtn.innerText = "훌륭합니다!";
                 btnNext8.classList.remove('hidden');
             } else {
-                qBtn.innerText = "🙏 한 글자라도 적어주세요!";
-                setTimeout(() => qBtn.innerText = "입력 완료", 2000);
+                qBtn.innerText = "🙏 글자를 적고 외쳐주세요!";
+                setTimeout(() => qBtn.innerText = "외치기", 2000);
             }
         });
     }
