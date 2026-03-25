@@ -319,32 +319,29 @@ body.no-scroll { overflow: hidden; touch-action: none; }
 .start-btn {
     position: relative;
     padding: 16px 50px;
-    font-size: 1.2rem;
-    font-weight: 800;
-    color: #fff;
-    background: linear-gradient(135deg, rgba(29, 185, 84, 0.3), rgba(243, 156, 18, 0.3));
-    border: 2px solid rgba(255,255,255,0.6);
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: #000;
+    background: #1DB954; /* Solid Spotify Green for max visibility */
+    border: none;
     border-radius: 50px;
     cursor: pointer;
     overflow: hidden;
-    backdrop-filter: blur(12px);
     transition: all 0.3s ease;
-    box-shadow: 0 0 20px rgba(29, 185, 84, 0.4), inset 0 0 15px rgba(243, 156, 18, 0.2);
+    box-shadow: 0 10px 30px rgba(29, 185, 84, 0.6);
     letter-spacing: 2px;
-    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
 }
 
 .pulse-glow { animation: pulseGlow 2s infinite; }
 @keyframes pulseGlow {
-    0% { box-shadow: 0 0 0 0 rgba(29, 185, 84, 0.6), inset 0 0 15px rgba(243, 156, 18, 0.4); border-color: rgba(255,255,255,0.8); }
-    50% { box-shadow: 0 0 0 20px rgba(29, 185, 84, 0), inset 0 0 25px rgba(243, 156, 18, 0.6); border-color: rgba(255,255,255,0.4); }
-    100% { box-shadow: 0 0 0 0 rgba(29, 185, 84, 0), inset 0 0 15px rgba(243, 156, 18, 0.4); border-color: rgba(255,255,255,0.8); }
+    0% { box-shadow: 0 0 0 0 rgba(29, 185, 84, 0.8); }
+    70% { box-shadow: 0 0 0 25px rgba(29, 185, 84, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(29, 185, 84, 0); }
 }
 
 .start-btn:hover {
-    background: linear-gradient(135deg, rgba(29, 185, 84, 0.5), rgba(243, 156, 18, 0.5));
-    border-color: #fff;
+    background: #1ed760;
     transform: scale(1.05);
     animation: none;
-    box-shadow: 0 0 30px rgba(29, 185, 84, 0.6), inset 0 0 20px rgba(243, 156, 18, 0.4);
+    box-shadow: 0 10px 40px rgba(29, 185, 84, 0.8);
 }

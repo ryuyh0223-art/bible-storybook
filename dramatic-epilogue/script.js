@@ -185,11 +185,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function initScene13Delay() {
         const btnNext13 = document.getElementById('btn-next-13');
         const guide = document.getElementById('s13-guide');
+        if(guide) guide.innerText = "나의 연약함을 품으시는 주님의 사랑을 묵상해 보세요.";
         setTimeout(() => {
-            if(guide) guide.innerText = "주님이 친히 바위가 되어 주십니다.";
+            if(guide) guide.innerText = "이제 흔들려도 괜찮습니다. 주님이 나의 바위이십니다.";
             btnNext13.classList.remove('hidden');
             gsap.fromTo(btnNext13, {opacity: 0}, {opacity: 1, duration: 1});
-        }, 2000); // 2 second pause
+        }, 2500); // 2.5 second pause
     }
 
     // =====================================
