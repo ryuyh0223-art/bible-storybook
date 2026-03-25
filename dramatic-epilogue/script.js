@@ -134,12 +134,13 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if(qBtn) {
         qBtn.addEventListener('click', () => {
-            if(qInput.value.trim().replace(/\s+/g,'').includes('그리스도')) {
+            if(qInput.value.trim().length >= 1) {
                 qInput.disabled = true;
-                qBtn.innerText = "정답!";
+                qBtn.innerText = "훌륭합니다!";
                 btnNext8.classList.remove('hidden');
             } else {
-                gsap.to('.input-group', {x: -10, yoyo: true, repeat: 5, duration: 0.1});
+                qBtn.innerText = "🙏 한 글자라도 적어주세요!";
+                setTimeout(() => qBtn.innerText = "입력 완료", 2000);
             }
         });
     }
