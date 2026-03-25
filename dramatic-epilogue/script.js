@@ -9,10 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const bgmPlayer = document.getElementById('bgm-player');
     
     if(btnStart) {
-        gsap.from(".sub-title", {y: 20, opacity: 0, duration: 0.8, delay: 0.2});
-        gsap.from(".main-title .word", {y: 40, opacity: 0, duration: 0.8, stagger: 0.15, delay: 0.4, ease: "back.out(1.5)"});
-        gsap.from(".episode-title", {opacity: 0, duration: 0.8, delay: 0.8});
-        gsap.from(".start-btn", {scale: 0.9, opacity: 0, duration: 0.8, delay: 1.2, ease: "elastic.out(1, 0.5)"});
+        gsap.from(".main-title .word", {y: 40, opacity: 0, duration: 0.8, stagger: 0.15, delay: 0.2, ease: "back.out(1.5)"});
+        gsap.from(".episode-title", {opacity: 0, duration: 0.8, delay: 0.6});
 
         btnStart.addEventListener('click', () => {
             if(bgmPlayer) bgmPlayer.play().catch(e => console.log("BGM Error:", e));
