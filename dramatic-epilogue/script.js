@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // === Global Framework ===
     let currentSlide = 0; // Starts at 0 (Intro Cover)
-    const totalSlides = 15; // 10 interactive scenes + 5 narrations
+    const totalSlides = 16; // 10 interactive scenes + 6 narrations
 
     // Intro Animation & BGM Start
     const btnStart = document.getElementById('btn-start-experience');
@@ -27,6 +27,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Global Cursor Effect (Antigravity Style)
+    const cursorGlow = document.querySelector('.cursor-glow');
+    document.addEventListener('mousemove', (e) => {
+        if(cursorGlow) {
+            cursorGlow.style.opacity = 1;
+            gsap.to(cursorGlow, {x: e.clientX, y: e.clientY, duration: 0.1, ease: 'power2.out'});
+        }
+    });
+
     function goToSlide(num) {
         document.querySelectorAll('.slide').forEach(s => {
             s.classList.remove('active');
@@ -41,8 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Attach Next Buttons globally (Up to 14 moving to 15)
-    for(let i=1; i<=14; i++) {
+    // Attach Next Buttons globally (Up to 15 moving to 16)
+    for(let i=1; i<totalSlides; i++) {
         const btn = document.getElementById(`btn-next-${i}`);
         if(btn) {
             btn.addEventListener('click', () => goToSlide(i+1));
@@ -52,8 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize logic that depends on elements being visible
     function initSlide(num) {
         if(num === 10) initTimer(); // Scene 6 -> Slide 10
-        if(num === 12) initScene12Delay(); // Scene 7 -> Slide 12
-        if(num === 13) setTimeout(initScratch, 300); // Scene 8 -> Slide 13
+        if(num === 13) initScene13Delay(); // Slide 13 (Emotional Pause)
+        if(num === 14) setTimeout(initScratch, 300); // Slide 14 (Scratch Canvas)
     }
 
     // =====================================
@@ -171,20 +180,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =====================================
-    // Slide 12 (formerly Scene 7): Emotional Delay
+    // Slide 13: Emotional Delay
     // =====================================
-    function initScene12Delay() {
-        const btnNext12 = document.getElementById('btn-next-12');
-        const guide = document.getElementById('s12-guide');
+    function initScene13Delay() {
+        const btnNext13 = document.getElementById('btn-next-13');
+        const guide = document.getElementById('s13-guide');
         setTimeout(() => {
             if(guide) guide.innerText = "주님이 친히 바위가 되어 주십니다.";
-            btnNext12.classList.remove('hidden');
-            gsap.fromTo(btnNext12, {opacity: 0}, {opacity: 1, duration: 1});
+            btnNext13.classList.remove('hidden');
+            gsap.fromTo(btnNext13, {opacity: 0}, {opacity: 1, duration: 1});
         }, 2000); // 2 second pause
     }
 
     // =====================================
-    // Slide 13 (formerly Scene 8): Canvas Scratch
+    // Slide 14: Canvas Scratch
     // =====================================
     function initScratch() {
         const container = document.getElementById('scratch-container');
@@ -192,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if(!canvas || !container) return;
         
         const ctx = canvas.getContext('2d');
-        const btnNext13 = document.getElementById('btn-next-13');
+        const btnNext14 = document.getElementById('btn-next-14');
         const guideAnim = document.querySelector('.scratch-guide');
         
         canvas.width = container.clientWidth;
@@ -250,17 +259,17 @@ document.addEventListener('DOMContentLoaded', () => {
             if(percentCleared > 0.35) { // 35% erased to unlock
                 unlocked = true;
                 gsap.to(canvas, {opacity: 0, duration: 1, onComplete: () => canvas.style.display = 'none'});
-                btnNext13.classList.remove('hidden');
-                document.getElementById('s13-guide').innerText = "어둠이 걷히고 새로운 길이 열립니다.";
+                btnNext14.classList.remove('hidden');
+                document.getElementById('s14-guide').innerText = "어둠이 걷히고 새로운 길이 열립니다.";
             }
         }
     }
 
     // =====================================
-    // Slide 14 (formerly Scene 9): Acrostic Check Logic
+    // Slide 15: Acrostic Check Logic
     // =====================================
     const inputs = document.querySelectorAll('.acrostic-input');
-    const btnNext14 = document.getElementById('btn-next-14');
+    const btnNext15 = document.getElementById('btn-next-15');
 
     if(inputs.length > 0) {
         inputs.forEach(input => {
@@ -269,9 +278,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 inputs.forEach(i => { if(i.value.trim() === "") allFilled = false; });
                 
                 if(allFilled) {
-                    btnNext14.classList.remove('disabled');
+                    btnNext15.classList.remove('disabled');
                 } else {
-                    btnNext14.classList.add('disabled');
+                    btnNext15.classList.add('disabled');
                 }
             });
         });

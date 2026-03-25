@@ -12,6 +12,9 @@
 </head>
 <body class="dark-mode no-scroll">
 
+    <!-- Interactive Cursor Glow -->
+    <div class="cursor-glow"></div>
+
     <!-- Global Floating Mute Button -->
     <button id="btn-mute" class="mute-btn">🔊</button>
 
@@ -32,9 +35,12 @@
                     <span class="word">에필로그</span>
                 </h1>
                 <p class="episode-title">Ep. 이제부터 베드로</p>
-                <button id="btn-start-experience" class="start-btn mt-lg">
-                    <span>체험 시작하기</span>
-                </button>
+                <div class="mt-xl" style="margin-top: 40px;">
+                    <button id="btn-start-experience" class="start-btn pulse-glow">
+                        <span>시작하기 ➔</span>
+                    </button>
+                    <p class="mt-sm" style="font-size: 0.8rem; color:#666; letter-spacing: 1px;">사운드를 켜고 감상해주세요</p>
+                </div>
             </div>
         </section>
 
@@ -102,7 +108,8 @@
         <!-- [6] Panic Popup -->
         <section id="slide6" class="slide hidden">
             <div class="image-area">
-                <div class="bg-layer" style="background-image: url('images/scene4_temple.jpg')"></div>
+                <!-- Use background-size: cover and top alignment to effectively zoom past the source text -->
+                <div class="bg-layer" style="background-image: url('images/scene4_temple.jpg'); background-size: cover; background-position: center top;"></div>
                 <div id="panic-popup" class="glass-popup hidden">
                     <div class="popup-content text-center">
                         <h3 class="danger-text">Panic (공포)</h3>
@@ -175,19 +182,29 @@
             </div>
         </section>
 
-        <!-- [12] Pause & Reflect -->
-        <section id="slide12" class="slide hidden">
+        <!-- [12] Narration 6 (New Bridge) -->
+        <section id="slide12" class="slide hidden narration-slide">
+            <div class="narration-content">
+                <p class="narration-text">예수님은 자신에게 대들고 원망하는 베드로를 절대로 혼내거나 포기하지 않으셨습니다.</p>
+                <p class="narration-text mt-md">오히려 그 연약하고 무너진 모습까지 끌어안고, 그를 위해 <span class="text-highlight">십자가의 길</span>을 묵묵히 걸어가십니다.</p>
+                <p class="narration-text mt-md">흔들리는 나를 끝까지 버리지 않으시고, 항상 곁에 계시는 그 변함없는 사랑...</p>
+                <button id="btn-next-12" class="next-btn mt-lg">다음으로 ➔</button>
+            </div>
+        </section>
+
+        <!-- [13] Pause & Reflect -->
+        <section id="slide13" class="slide hidden">
             <div class="image-area">
                 <div class="bg-layer" style="background-image: url('images/scene7.jpg')"></div>
             </div>
             <div class="ui-area text-center">
-                <p id="s12-guide" class="guide-text mb-sm" style="font-size: 1.1rem; color: #fff;">잠시 그림과 글귀를 묵상해 보세요...</p>
-                <button id="btn-next-12" class="next-btn hidden">다음으로 ➔</button>
+                <p id="s13-guide" class="guide-text mb-sm" style="font-size: 1.1rem; color: #fff;">잠시 그림과 글귀를 묵상해 보세요...</p>
+                <button id="btn-next-13" class="next-btn hidden">다음으로 ➔</button>
             </div>
         </section>
 
-        <!-- [13] Scratch to Reveal -->
-        <section id="slide13" class="slide hidden">
+        <!-- [14] Scratch to Reveal -->
+        <section id="slide14" class="slide hidden">
             <div class="image-area" id="scratch-container">
                 <div class="bg-layer" style="background-image: url('images/scene8.jpg')"></div>
                 <canvas id="scratch-pad"></canvas>
@@ -196,13 +213,13 @@
                 </div>
             </div>
             <div class="ui-area">
-                <p id="s13-guide" class="text-center hint-text mb-sm">손가락으로 화면을 문질러 어둠을 지워주세요.</p>
-                <button id="btn-next-13" class="next-btn hidden">나의 고백 작성하기 ➔</button>
+                <p id="s14-guide" class="text-center hint-text mb-sm">손가락으로 화면을 문질러 어둠을 지워주세요.</p>
+                <button id="btn-next-14" class="next-btn hidden">나의 고백 작성하기 ➔</button>
             </div>
         </section>
 
-        <!-- [14] Acrostic Poem -->
-        <section id="slide14" class="slide hidden">
+        <!-- [15] Acrostic Poem -->
+        <section id="slide15" class="slide hidden">
             <div class="image-area">
                 <div class="bg-layer" style="background-image: url('images/scene9.jpg')"></div>
             </div>
@@ -229,12 +246,12 @@
                         <input type="text" class="acrostic-input" placeholder="직접 적어보세요">
                     </div>
                 </div>
-                <button id="btn-next-14" class="next-btn disabled mt-sm">결심하기 ➔</button>
+                <button id="btn-next-15" class="next-btn disabled mt-sm">결심하기 ➔</button>
             </div>
         </section>
 
-        <!-- [15] Family Epilogue -->
-        <section id="slide15" class="slide hidden">
+        <!-- [16] Family Epilogue -->
+        <section id="slide16" class="slide hidden">
             <div class="image-area">
                 <div class="bg-layer" style="background-image: url('images/scene10.jpg')"></div>
             </div>
