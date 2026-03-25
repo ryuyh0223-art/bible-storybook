@@ -1,0 +1,340 @@
+/* 전역 최적화 및 리셋 */
+:root {
+    --bg-dark: #000;
+    --ui-dark: #111;
+    --text-main: #f5f5f7;
+    --spotify-green: #1db954;
+    --action-color: #f39c12;
+    --danger-color: #ff4757;
+}
+
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Pretendard', sans-serif;
+    user-select: none;
+}
+
+body.dark-mode { background-color: var(--bg-dark); color: var(--text-main); }
+body.no-scroll { overflow: hidden; touch-action: none; }
+
+#app-container {
+    width: 100vw; height: 100vh; height: 100dvh;
+    background: #000;
+}
+
+/* Flex Slide Architecture */
+.slide { 
+    display: flex; flex-direction: column;
+    width: 100%; height: 100%;
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s;
+    position: absolute; top:0; left:0;
+}
+
+.slide.active {
+    opacity: 1; visibility: visible; z-index: 10;
+}
+
+.slide.hidden { display: none !important; }
+
+/* Narration Slide Specific */
+.narration-slide {
+    background: #0a0a0c;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.narration-content {
+    max-width: 500px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-left: 3px solid #f39c12;
+    padding-left: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 0 16px 16px 0;
+    padding: 30px 20px;
+}
+
+.narration-text {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: #e0e0e0;
+    word-break: keep-all;
+}
+
+.text-highlight {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #fff;
+}
+
+/* Image Area (Top ~70% screen) */
+.image-area {
+    position: relative;
+    flex: 1; 
+    width: 100%;
+    background: #000;
+}
+
+.bg-layer {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-size: contain;   
+    background-position: center bottom; 
+    background-repeat: no-repeat;
+}
+
+/* UI Area (Bottom Control Panel) */
+.ui-area {
+    padding: 20px;
+    background: var(--ui-dark);
+    border-top: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 -10px 20px rgba(0,0,0,0.5);
+    z-index: 50;
+    flex-shrink: 0; 
+}
+
+/* Scrollable UI for the last Epilogue */
+.scrollable-ui {
+    max-height: 50vh;
+    overflow-y: auto;
+    touch-action: pan-y; 
+}
+
+/* Utilities */
+.text-center { text-align: center; }
+.text-white { color: #fff; }
+.mb-sm { margin-bottom: 0.8rem; }
+.mb-md { margin-bottom: 1.5rem; }
+.mt-sm { margin-top: 0.8rem; }
+.mt-md { margin-top: 1.5rem; }
+.mt-lg { margin-top: 2rem; }
+.pointer-events-none { pointer-events: none; }
+.hidden { display: none !important; }
+.text-shadow { text-shadow: 0 0 10px rgba(0,0,0,0.8); }
+
+/* Buttons & Inputs */
+.action-btn, .next-btn, .spotify-btn {
+    width: 100%; padding: 1rem; font-size: 1.1rem; font-weight: 800;
+    border-radius: 20px; border: none; cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.action-btn { background: var(--action-color); color: #000; }
+.action-btn:active { transform: scale(0.97); }
+
+.next-btn {
+    background: #fff; color: #000;
+    box-shadow: 0 4px 15px rgba(255,255,255,0.2);
+    animation: bounce 2s infinite;
+}
+@keyframes bounce { 0%, 100% {transform: translateY(0);} 50% {transform: translateY(-5px);} }
+
+.next-btn.disabled {
+    background: #444; color: #777; pointer-events: none; animation: none;
+}
+
+.spotify-btn { background: var(--spotify-green); color: #fff; }
+
+.danger-glow { background: #222; border: 1px solid var(--danger-color); color: var(--danger-color); }
+.outline { background: transparent; border: 1px solid #fff; color: #fff; }
+
+/* Interactive Elements */
+.slider-labels { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 10px; font-size: 0.9rem; color: #ccc;}
+.spotify-slider {
+    -webkit-appearance: none; appearance: none; width: 100%; height: 10px; border-radius: 5px;
+    background: #444; outline: none; margin: 10px 0;
+}
+.spotify-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 26px; height: 26px; border-radius: 50%;
+    background: #fff; cursor: pointer; box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.guide-text { font-size: 0.85rem; color: #aaa; }
+.hint-text { font-size: 0.95rem; color: #ddd; }
+
+/* Popup */
+.glass-popup {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 90%; max-width: 350px; z-index: 100;
+}
+.popup-content { background: rgba(0,0,0,0.85); border: 1px solid var(--danger-color); padding: 1.5rem; border-radius: 16px; }
+.danger-text { color: var(--danger-color); margin-bottom: 0.5rem; }
+.popup-image { width: 100%; height: 130px; background-size: cover; background-position: center; border-radius: 8px; }
+
+/* Quiz */
+.input-group { display: flex; gap: 10px; }
+.spotify-input {
+    flex: 1; padding: 1rem; font-size: 1.1rem; border-radius: 20px;
+    border: 1px solid #444; background: #222; color: #fff; outline: none; user-select: auto;
+}
+
+/* Timer */
+.giant-timer {
+    position: absolute; top: 10%; left: 50%; transform: translateX(-50%);
+    font-size: 4.5rem; font-weight: 900; color: #fff;
+    font-variant-numeric: tabular-nums; z-index: 10;
+}
+
+/* Scratch Canvas */
+#scratch-container { position: relative; }
+#scratch-pad {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 20; touch-action: none;
+}
+.scratch-guide {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    z-index: 21; font-size: 1.5rem; font-weight: bold; color: #fff;
+}
+.animate-pulse { animation: pulse 1.5s infinite; }
+@keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+
+/* Acrostic (Scene 9) */
+.acrostic-row { display: flex; align-items: stretch; gap: 10px; margin-bottom: 12px; }
+.letter { 
+    font-size: 1.8rem; font-weight: 900; color: var(--spotify-green); 
+    display: flex; align-items: center; justify-content: center;
+}
+.input-col { display: flex; flex-direction: column; flex: 1; }
+.guide-text-visible {
+    font-size: 0.8rem; color: #888; margin-bottom: 4px; padding-left: 5px;
+}
+.acrostic-input {
+    width: 100%; padding: 0.8rem; font-size: 1rem; border-radius: 12px;
+    border: 1px solid #444; background: #222; color: #fff; outline: none; user-select: auto;
+}
+.acrostic-input:focus { border-color: var(--spotify-green); }
+
+/* Epilogue Boxes */
+.glass-box {
+    background: rgba(255,255,255,0.08); 
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1); 
+    border-radius: 12px; padding: 1.2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+/* Mute Button */
+.mute-btn {
+    position: fixed; top: 15px; right: 15px; z-index: 1000;
+    width: 45px; height: 45px; border-radius: 50%;
+    background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2);
+    color: #fff; font-size: 1.2rem; cursor: pointer;
+    display: none; align-items: center; justify-content: center;
+    backdrop-filter: blur(5px); transition: all 0.3s ease;
+}
+.mute-btn.show { display: flex; }
+.mute-btn:hover { background: rgba(255,255,255,0.2); }
+.box-title { font-size: 1.1rem; margin-bottom: 0.4rem; }
+.box-desc { font-size: 0.95rem; line-height: 1.5; color: #ddd; }
+
+/* =====================================
+   Intro Cover (Scene 0) - Antigravity Style
+   ===================================== */
+.intro-cover {
+    background: #050505;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    z-index: 100;
+}
+
+.aurora-bg {
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle at 50% 50%, rgba(29, 185, 84, 0.15), transparent 60%),
+                radial-gradient(circle at 80% 20%, rgba(243, 156, 18, 0.1), transparent 50%);
+    animation: rotateAurora 20s linear infinite;
+    z-index: 0;
+}
+@keyframes rotateAurora {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.intro-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.sub-title {
+    font-size: 0.95rem;
+    color: #888;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+.main-title {
+    font-size: 4.8rem;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -2px;
+    margin-bottom: 25px;
+}
+
+.main-title .word {
+    display: inline-block;
+    background: linear-gradient(135deg, #ffffff 0%, #aaaaaa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.episode-title {
+    font-size: 1.4rem;
+    color: var(--spotify-green);
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+.start-btn {
+    position: relative;
+    padding: 16px 45px;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #fff;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 50px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(255,255,255,0.05);
+}
+
+.start-btn span {
+    position: relative;
+    z-index: 2;
+}
+
+.start-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: all 0.5s ease;
+    z-index: 1;
+}
+
+.start-btn:hover {
+    border-color: #fff;
+    box-shadow: 0 0 25px rgba(255,255,255,0.3);
+    transform: translateY(-2px);
+}
+
+.start-btn:hover::before {
+    left: 100%;
+}
