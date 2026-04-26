@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이겨야 이기는 게 아니야! - 온라인 성경동화책</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="header">
+        <h1 class="title">📖 이겨야 이기는 게 아니야!</h1>
+        <button class="btn-music" id="musicToggle" aria-label="찬양" title="찬양 재생/정지">
+            ♪
+        </button>
+    </header>
+
+    <!-- 메인 콘텐츠 영역 -->
+    <main class="main-content">
+        <div class="book-container">
+            <!-- 이미지 슬라이더 -->
+            <div class="image-container">
+                <div class="image-slider" id="imageSlider">
+                    <div class="image-slide active">
+                        <img src="assets/images/슬라이드1.PNG" alt="표지" loading="lazy">
+                    </div>
+                    <div class="image-slide">
+                        <img src="assets/images/슬라이드2.PNG" alt="장면 1" loading="lazy">
+                    </div>
+                    <div class="image-slide">
+                        <img src="assets/images/슬라이드3.PNG" alt="장면 2" loading="lazy">
+                    </div>
+                    <div class="image-slide">
+                        <img src="assets/images/슬라이드4.PNG" alt="장면 3" loading="lazy">
+                    </div>
+                    <div class="image-slide">
+                        <img src="assets/images/슬라이드5.PNG" alt="장면 4" loading="lazy">
+                    </div>
+                    <div class="image-slide">
+                        <img src="assets/images/슬라이드6.PNG" alt="장면 5" loading="lazy">
+                    </div>
+                    <div class="image-slide">
+                        <img src="assets/images/슬라이드7.PNG" alt="장면 6" loading="lazy">
+                    </div>
+                    <div class="image-slide">
+                        <img src="assets/images/슬라이드8.PNG" alt="장면 7" loading="lazy">
+                    </div>
+                    <div class="image-slide">
+                        <img src="assets/images/슬라이드9.PNG" alt="장면 8" loading="lazy">
+                    </div>
+                    <div class="image-slide">
+                        <img src="assets/images/슬라이드10.PNG" alt="장면 9" loading="lazy">
+                    </div>
+                    <div class="image-slide">
+                        <img src="assets/images/슬라이드11.PNG" alt="장면 10" loading="lazy">
+                    </div>
+                    <div class="image-slide">
+                        <img src="assets/images/슬라이드12.PNG" alt="장면 11" loading="lazy">
+                    </div>
+                    <div class="image-slide">
+                        <img src="assets/images/슬라이드13.PNG" alt="장면 12" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 텍스트 콘텐츠 -->
+            <div class="text-container" id="textContainer">
+                <div class="text-page active">
+                    <h2 class="page-title cover-title">이겨야 이기는 게 아니야!</h2>
+                    <div class="page-content center-align">
+                        <p><strong>가정예배를 위한 준비:</strong> 아이를 무릎에 앉히고 편안한 분위기를 만들어주세요. 오른쪽 위 음악 버튼(♪)을 눌러 찬양을 틀어놓고 이야기 여행을 시작해 봅시다.</p>
+                        <br>
+                        <p><strong>말씀:</strong> "너희 안에 이 마음을 품으라 곧 그리스도 예수의 마음이니" (빌립보서 2장 5절)</p>
+
+                        <div class="prayer-box" style="text-align: left; margin-top: 2rem;">
+                            <h3>🙏 성경동화 읽기 전 기도</h3>
+                            <p>하나님 아버지, 오늘 예수님이 어떻게 우리를 사랑하셨는지 함께 말씀을 듣고자 합니다.<br>
+                                우리 아이가 예수님의 마음을 닮아 사랑하고 양보할 줄 아는 멋진 어린이로 자라나게 해주세요.<br>
+                                예수님의 이름으로 기도합니다. 아멘!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-page">
+                    <div class="page-content">
+                        <p><strong>"내가 최고야!", "으쓱으쓱", "내가 더 세!"</strong></p>
+                        <p>옛날 빌립보 마을 사람들은 뽐내기를 참 좋아했어요.</p>
+                        <p>"내가 제일 힘이 세! 내가 최고야!" 하면서 누구에게든 무조건 이기려고만 했지요.</p>
+                    </div>
+                </div>
+
+                <div class="text-page">
+                    <div class="page-content">
+                        <p><strong>"내 마음대로 할 거야!", "아니야, 내 방식이 맞아!"</strong></p>
+                        <p>앗, 사랑이 넘쳐야 할 교회 안에서도 다툼이 일어났어요.</p>
+                        <p>열심히 일하던 유오디아와 순두게 아주머니가 서로 대장이 되겠다며 싸우기 시작했어요.</p>
+                    </div>
+                </div>
+
+                <div class="text-page">
+                    <div class="page-content">
+                        <p><strong>"흥!", "칫!", "쩌어억"</strong></p>
+                        <p>서로 내가 옳다며 양보하지 않자, 모두의 마음에 큰 상처가 났어요.</p>
+                        <p>기쁨이 가득했던 교회가 슬픔에 빠지고 말았답니다.</p>
+                    </div>
+                </div>
+
+                <div class="text-page">
+                    <div class="page-content">
+                        <p><strong>"슈우웅~", "예수님의 마음을 품으세요."</strong></p>
+                        <p>그때, 바울 사도에게서 편지가 도착했어요!</p>
+                        <p>"여러분, 서로 이기려고만 하지 말고 예수님의 마음을 꼭 닮아보세요."</p>
+                    </div>
+                </div>
+
+                <div class="text-page">
+                    <div class="page-content">
+                        <p><strong>"우와~!", "가장 높으신 왕!"</strong></p>
+                        <p>예수님은 온 우주에서 가장 높고 위대하신 분이에요.</p>
+                        <p>세상의 진짜 주인이자, 가장 멋진 왕이시죠!</p>
+                    </div>
+                </div>
+
+                <div class="text-page">
+                    <div class="page-content">
+                        <p><strong>"스르륵", "다 내려놓을게."</strong></p>
+                        <p>하지만 예수님은 그 멋진 자리를 고집하지 않으셨어요.</p>
+                        <p>우리를 너무너무 사랑하셔서, 왕의 자리를 훌훌 벗어버리셨거든요.</p>
+                    </div>
+                </div>
+
+                <div class="text-page">
+                    <div class="page-content">
+                        <p><strong>"찰박찰박", "어엇? 예수님이 왜 내 발을..."</strong></p>
+                        <p>가장 높으신 예수님이 가장 낮은 종의 모습으로 오셨어요.</p>
+                        <p>친구들의 냄새나는 발을 무릎 꿇고 정성껏 닦아주셨지요.</p>
+                    </div>
+                </div>
+
+                <div class="text-page">
+                    <div class="page-content">
+                        <p><strong>"뚜벅뚜벅", "너희를 사랑한단다."</strong></p>
+                        <p>예수님은 우리를 구해주시려고 자신의 생명까지 내어주셨어요.</p>
+                        <p>십자가에서 죽기까지 우리를 위해 기꺼이 져주신 거예요.</p>
+                    </div>
+                </div>
+
+                <div class="text-page">
+                    <div class="page-content">
+                        <p><strong>"짝짝짝!", "최고의 예수님!", "만세!"</strong></p>
+                        <p>지는 것이 끝이 아니었어요!</p>
+                        <p>하나님은 사랑으로 가장 낮아지신 예수님을 온 우주에서 제일 높은 진짜 왕으로 세워주셨답니다.</p>
+                    </div>
+                </div>
+
+                <div class="text-page">
+                    <div class="page-content">
+                        <p><strong>"아앗...", "내가 틀렸어."</strong></p>
+                        <p>편지를 모두 읽은 두 아주머니는 얼굴이 화끈거렸어요.</p>
+                        <p>"예수님은 모든 걸 다 포기하고 양보하셨는데, 나는 내 욕심만 부렸구나."</p>
+                    </div>
+                </div>
+
+                <div class="text-page">
+                    <div class="page-content">
+                        <p><strong>"미안해", "네가 먼저 해!", "와락"</strong></p>
+                        <p>"정말 미안해, 내가 먼저 널 도와줄게!"</p>
+                        <p>두 사람은 내 고집을 꺾고 서로 양보하기로 했어요. 교회에 다시 기쁨의 웃음꽃이 피어났죠.</p>
+                    </div>
+                </div>
+
+                <div class="text-page">
+                    <div class="page-content">
+                        <p><strong>"너 먼저 해!", "고마워!"</strong></p>
+                        <p>무조건 이겨야만 진짜 이기는 게 아니에요.</p>
+                        <p>예수님처럼 친구에게 먼저 양보하고 사랑으로 져줄 때, 우리는 진짜 멋진 하나님 나라의 어린이가 된답니다!</p>
+                        
+                        <div class="highlight-box">
+                            <h3>📌 함께 나누는 질문</h3>
+                            <p>"(아이 이름)아, 오늘은 친구에게 어떻게 양보하고 사랑을 나눌 수 있을까?"</p>
+                        </div>
+                        <div class="prayer-box">
+                            <h3>🙏 마무리 기도</h3>
+                            <p>사랑의 예수님, 우리를 위해 십자가에서 모든 것을 내어주신 사랑에 감사해요.<br>
+                                예수님처럼 나도 내 고집을 부리기보다 친구를 먼저 생각하고 양보하는 예쁜 마음을 가지게 해주세요.<br>
+                                예수님의 이름으로 기도합니다. 아멘!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 네비게이션 버튼 -->
+        <div class="navigation">
+            <button class="nav-btn nav-prev" id="prevBtn" disabled aria-label="이전 페이지">
+                ‹
+            </button>
+            <div class="page-indicator" id="pageIndicator">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            <button class="nav-btn nav-next" id="nextBtn" aria-label="다음 페이지">
+                ›
+            </button>
+        </div>
+    </main>
+
+    <!-- YouTube 찬양 플레이어 (숨김) -->
+    <div id="youtube-player" style="position: fixed; bottom: 0; left: 0; pointer-events: none; opacity: 0;"></div>
+
+    <!-- YouTube iframe API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
