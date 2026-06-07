@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>밖에서도 예수님을 쏙 닮을래요! - 온라인 성경동화책</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="header">
+        <h1 class="title">✨ 밖에서도 예수님을 쏙 닮을래요!</h1>
+        <div class="navigation-links">
+            <a href="bible-storybook-real-king-comes/index.html" class="nav-link prev-work" style="background-color: #FF9F43; color: white; border: 2px solid #E58E26; font-weight: bold;">
+                👑 최신 이야기: '똑똑똑! 진짜 왕이 오셨어요' 보러 가기 ➔
+            </a>
+            <a href="bible-storybook-look-at-jesus/index.html" class="nav-link prev-work">
+                🌊 이전 이야기: '찰박찰박, 예수님만 볼래요!' 보러 가기 ➔
+            </a>
+            <a href="bible-storybook-new-heart/index.html" class="nav-link another-work">
+                💗 지난 이야기: '내 마음이 새롭게 짠!' 보러 가기 ➔
+            </a>
+        </div>
+        <button class="btn-music" id="musicToggle" aria-label="찬양" title="찬양 재생/정지">
+            ♪
+        </button>
+    </header>
+
+    <!-- 메인 콘텐츠 영역 -->
+    <main class="main-content">
+        <div class="book-container">
+            <!-- 이미지 슬라이더 -->
+            <div class="image-container">
+                <div class="image-slider" id="imageSlider">
+                    <div class="image-slide active">
+                        <img src="assets/images/slide_01.png" alt="표지: 밖에서도 예수님을 쏙 닮을래요!" loading="lazy">
+                    </div>
+                    <div class="image-slide">
+                        <img src="assets/images/slide_02.png" alt="장면 1: 주일 아침 교회에서 찬양하는 송천이" loading="lazy">
+                    </div>
+                    <div class="image-slide">
+                        <img src="assets/images/slide_03.png" alt="장면 2: 칭찬받아 으쓱해진 송천이" loading="lazy">
+                    </div>
+                    <div class="image-slide">
+                        <img src="assets/images/slide_04.png" alt="장면 3: 월요일 놀이터에서 욕심을 부리는 송천이" loading="lazy">
+                    </div>
+                    <div class="image-slide">
+                        <img src="assets/images/slide_05.png" alt="장면 4: 집에서 장난감 때문에 거짓말하는 송천이" loading="lazy">
+                    </div>
+                    <div class="image-slide">
+                        <img src="assets/images/slide_06.png" alt="장면 5: 잠든 송천이에게 찾아오신 슬픈 얼굴의 예수님" loading="lazy">
+                    </div>
+                    <div class="image-slide">
+                        <img src="assets/images/slide_07.png" alt="장면 6: 송천이의 손을 꼭 잡고 다정하게 말씀하시는 예수님" loading="lazy">
+                    </div>
+                    <div class="image-slide">
+                        <img src="assets/images/slide_08.png" alt="장면 7: 진짜 거룩한 모습(양보와 사랑)을 보여주시는 예수님" loading="lazy">
+                    </div>
+                    <div class="image-slide">
+                        <img src="assets/images/slide_09.png" alt="장면 8: 잠에서 깨어나 눈을 모으고 기도하며 회개하는 송천이" loading="lazy">
+                    </div>
+                    <div class="image-slide">
+                        <img src="assets/images/slide_10.png" alt="장면 9: 놀이터에서 친구에게 미안하다고 하며 미끄럼틀을 양보하는 송천이" loading="lazy">
+                    </div>
+                    <div class="image-slide">
+                        <img src="assets/images/slide_11.png" alt="장면 10: 양보와 사랑을 실천하자 마음에 십자가 빛이 반짝이는 송천이" loading="lazy">
+                    </div>
+                    <div class="image-slide">
+                        <img src="assets/images/slide_12.png" alt="장면 11: 일상에서도 예수님의 보이지 않는 손을 잡고 걷는 송천이" loading="lazy">
+                    </div>
+                    <div class="image-slide">
+                        <img src="assets/images/slide_13.png" alt="장면 12: 하늘에서 기뻐하며 하트를 만드시는 하나님" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 텍스트 콘텐츠 -->
+            <div class="text-container" id="textContainer">
+                <!-- 표지 -->
+                <div class="text-page active">
+                    <h2 class="page-title cover-title">밖에서도 예수님을 쏙 닮을래요!</h2>
+                    <div class="page-content center-align">
+                        <p class="guide-text"><strong>가정예배를 위한 준비:</strong> 아이를 무릎에 앉히고 편안한 분위기를 만들어주세요. 오른쪽 위 음악 버튼(♪)을 눌러 찬양을 틀어놓고 이야기 여행을 시작해 봅시다.</p>
+                        <br>
+                        
+                        <div class="scripture-box">
+                            <span class="scripture-badge">오늘의 말씀</span>
+                            <p class="scripture-text">"너희는 거룩하라 이는 나 여호와 너희 하나님이 거룩함이니라"</p>
+                            <span class="scripture-ref">레위기 19장 2절</span>
+                        </div>
+
+                        <div class="prayer-box" style="text-align: left; margin-top: 2rem;">
+                            <h3>🙏 성경동화 읽기 전 기도</h3>
+                            <p>사랑의 하나님, 오늘 우리 아이에게 들려줄 말씀이 마음에 깊이 새겨지게 하시고, 교회에서뿐만 아니라 일상 속 모든 곳에서 예수님을 닮아가는 거룩한 어린이가 되게 도와주세요. 예수님의 이름으로 기도합니다. 아멘!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 장면 1 -->
+                <div class="text-page">
+                    <div class="page-content">
+                        <p class="narration">주일 아침, 송천이는 교회에서 가장 목소리가 컸어요. 두 손을 예쁘게 모으고 천사처럼 찬양했지요.</p>
+                    </div>
+                </div>
+
+                <!-- 장면 2 -->
+                <div class="text-page">
+                    <div class="page-content">
+                        <p class="narration">어른들은 <strong>"우리 송천이는 정말 거룩하고 멋진 아이구나!"</strong> 하고 칭찬해 주셨어요. 송천이는 기분이 무척 좋았어요.</p>
+                    </div>
+                </div>
+
+                <!-- 장면 3 -->
+                <div class="text-page">
+                    <div class="page-content">
+                        <p class="narration">하지만 월요일 놀이터에서는 어땠을까요? 송천이는 미끄럼틀을 혼자 타겠다며 친구를 쿵 밀쳐버렸어요.</p>
+                    </div>
+                </div>
+
+                <!-- 장면 4 -->
+                <div class="text-page">
+                    <div class="page-content">
+                        <p class="narration">화요일에도, 수요일에도 송천이는 자기 마음대로만 했어요. 교회 밖에서는 천사 같은 모습이 싹 사라지고 욕심쟁이로 변해버렸지요.</p>
+                    </div>
+                </div>
+
+                <!-- 장면 5 -->
+                <div class="text-page">
+                    <div class="page-content">
+                        <p class="narration">그날 밤, 잠든 송천이에게 예수님이 찾아오셨어요. 그런데 예수님의 얼굴이 조금 슬퍼 보였어요.</p>
+                    </div>
+                </div>
+
+                <!-- 장면 6 -->
+                <div class="text-page">
+                    <div class="page-content">
+                        <p class="narration"><strong>"송천아, '거룩'은 교회에서 예쁜 옷을 입고 찬양할 때만 짠! 하고 나타나는 게 아니란다."</strong></p>
+                    </div>
+                </div>
+
+                <!-- 장면 7 -->
+                <div class="text-page">
+                    <div class="page-content">
+                        <p class="narration"><strong>"놀이터에서도, 집에서도 매일매일 내 손을 꼭 잡고 나를 쏙 빼닮게 행동하는 것! 그것이 진짜 거룩이란다."</strong></p>
+                    </div>
+                </div>
+
+                <!-- 장면 8 -->
+                <div class="text-page">
+                    <div class="page-content">
+                        <p class="narration">잠에서 깬 송천이는 두 손을 꼭 모았어요. <strong>"예수님, 교회 밖에서도 예수님을 닮은 거룩한 아이가 되게 도와주세요!"</strong></p>
+                    </div>
+                </div>
+
+                <!-- 장면 9 -->
+                <div class="text-page">
+                    <div class="page-content">
+                        <p class="narration">다음 날, 송천이는 미끄럼틀에서 밀쳤던 친구에게 다가갔어요. <strong>"어제는 정말 미안해, 우리 같이 재미있게 놀자!"</strong></p>
+                    </div>
+                </div>
+
+                <!-- 장면 10 -->
+                <div class="text-page">
+                    <div class="page-content">
+                        <p class="narration">친구에게 양보하고 사랑을 나누어주자, 송천이의 마음속이 예수님의 따뜻한 빛으로 가득 채워졌어요.</p>
+                    </div>
+                </div>
+
+                <!-- 장면 11 -->
+                <div class="text-page">
+                    <div class="page-content">
+                        <p class="narration">송천이는 이제 알아요. 주일 예배 시간뿐만 아니라 매일매일 일상에서 예수님의 손을 잡고 걷는 것이 진짜 거룩이라는 것을요!</p>
+                    </div>
+                </div>
+
+                <!-- 장면 12 -->
+                <div class="text-page">
+                    <div class="page-content">
+                        <p class="narration">어디서나 예수님을 쏙 빼닮은 송천이를 보며, 하나님은 최고로 기뻐하셨답니다. 우리 친구들도 매일매일 예수님을 닮아가는 거룩한 어린이가 되어요!</p>
+
+                        <div class="highlight-box">
+                            <h3>📌 함께 나누는 질문</h3>
+                            <p>"(아이 이름)아, 진짜 '거룩'은 주일에 교회에서 찬양할 때만 생기는 걸까? 우리가 월요일부터 토요일까지 친구나 가족을 만날 때는 어떻게 예수님을 닮아갈 수 있을까?"</p>
+                        </div>
+                        <div class="prayer-box">
+                            <h3>🙏 마무리 기도</h3>
+                            <p>사랑의 하나님, 우리가 교회 안에서 예쁜 목소리로 찬양할 때뿐만 아니라, 놀이터에서 친구를 만날 때도, 집에서 부모님과 동생을 대할 때도 매일매일 예수님의 손을 꼭 잡고 예수님을 닮아 행동하는 '진짜 거룩한 어린이'가 되게 해주세요. 예수님의 이름으로 기도합니다. 아멘!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 네비게이션 버튼 -->
+        <div class="navigation">
+            <button class="nav-btn nav-prev" id="prevBtn" disabled aria-label="이전 페이지">
+                ‹
+            </button>
+            <div class="page-indicator" id="pageIndicator">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            <button class="nav-btn nav-next" id="nextBtn" aria-label="다음 페이지">
+                ›
+            </button>
+        </div>
+    </main>
+
+    <!-- YouTube 찬양 플레이어 (숨김) -->
+    <div id="youtube-player" style="position: fixed; bottom: 0; left: 0; pointer-events: none; opacity: 0;"></div>
+
+    <!-- YouTube iframe API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
