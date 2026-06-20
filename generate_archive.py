@@ -48,7 +48,7 @@ def get_stories():
             
     # Hardcoded order to ensure latest is first (real king comes), and others
     # We can try to sort by some heuristic, but let's just let python's alphabetical or we can specify the newest one.
-    latest_folder = 'bible-storybook-word-is-best'
+    latest_folder = 'bible-storybook-special-telescope'
     # move latest to front
     stories.sort(key=lambda x: (x['folder'] != latest_folder, x['folder']))
     return stories
