@@ -46,11 +46,21 @@ def get_stories():
                 'thumbnail': thumbnail_path
             })
             
-    # Hardcoded order to ensure latest is first (real king comes), and others
-    # We can try to sort by some heuristic, but let's just let python's alphabetical or we can specify the newest one.
-    latest_folder = 'bible-storybook-special-telescope'
-    # move latest to front
-    stories.sort(key=lambda x: (x['folder'] != latest_folder, x['folder']))
+    # List recent folders in order from newest to oldest
+    RECENT_FOLDERS = [
+        'bible-storybook-special-telescope',
+        'bible-storybook-word-is-best',
+        'bible-storybook-real-king-comes'
+    ]
+    
+    def sort_key(x):
+        folder = x['folder']
+        if folder in RECENT_FOLDERS:
+            return (0, RECENT_FOLDERS.index(folder))
+        else:
+            return (1, folder)
+
+    stories.sort(key=sort_key)
     return stories
 
 def generate_html(stories):
