@@ -48,6 +48,7 @@ def get_stories():
             
     # List recent folders in order from newest to oldest
     RECENT_FOLDERS = [
+        'bible-storybook-shining-angel-face',
         'bible-storybook-one-in-gods-hand',
         'bible-storybook-special-telescope',
         'bible-storybook-word-is-best',
