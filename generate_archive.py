@@ -1,9 +1,153 @@
 import os
 import re
 import datetime
+import html as html_lib
+import json
+from pathlib import Path
 
 # Exclude list
-EXCLUDE_DIRS = ['.git', 'bible-storybook-epilogue-rest']
+EXCLUDE_DIRS = {
+    '.git',
+    'bible-storybook-epilogue-rest',
+    'dramatic-epilogue',
+}
+SUPPORTED_IMAGE_EXTENSIONS = {'.png', '.jpg', '.jpeg', '.webp'}
+
+# JSON이 없는 기존 동화의 현재 표시 순서를 유지한다.
+RECENT_FOLDERS = [
+    'bible-storybook-shining-angel-face',
+    'bible-storybook-one-in-gods-hand',
+    'bible-storybook-special-telescope',
+    'bible-storybook-word-is-best',
+    'bible-storybook-real-king-comes',
+]
+
+
+class ArchiveGenerationError(Exception):
+    """아카이브 생성을 중단해야 하는 입력 오류."""
+
+
+def require_json_string(data, field_name, story_json_path):
+    value = data.get(field_name)
+    if not isinstance(value, str) or not value.strip():
+        raise ArchiveGenerationError(
+            f"{story_json_path}: '{field_name}' 항목은 "
+            "비어 있지 않은 문자열이어야 합니다."
+        )
+    return value.strip()
+
+
+def find_exact_image(images_dir, filename, field_name):
+    image_path = Path(filename)
+    if image_path.name != filename or filename in {'.', '..'}:
+        raise ArchiveGenerationError(
+            f"'{field_name}'에는 assets/images 안의 파일명만 입력하세요: {filename}"
+        )
+    if image_path.suffix.lower() not in SUPPORTED_IMAGE_EXTENSIONS:
+        raise ArchiveGenerationError(
+            f"지원하지 않는 이미지 확장자입니다: {filename}"
+        )
+
+    files = [item for item in images_dir.iterdir() if item.is_file()]
+    exact_names = {item.name for item in files}
+    if filename in exact_names:
+        return filename
+
+    case_matches = [
+        name for name in exact_names if name.casefold() == filename.casefold()
+    ]
+    if case_matches:
+        raise ArchiveGenerationError(
+            f"이미지 파일명의 대소문자가 다릅니다. "
+            f"JSON='{filename}', 실제='{case_matches[0]}'"
+        )
+    raise ArchiveGenerationError(
+        f"표지 이미지를 찾을 수 없습니다: {images_dir / filename}"
+    )
+
+
+def find_legacy_thumbnail(images_dir):
+    images = sorted(
+        (
+            item.name
+            for item in images_dir.iterdir()
+            if item.is_file()
+            and item.suffix.lower() in SUPPORTED_IMAGE_EXTENSIONS
+        ),
+        key=str.casefold,
+    )
+    if not images:
+        return None
+
+    preferred_stems = (
+        'cover',
+        'slide_00',
+        'slide-00',
+        'slide00',
+        'slide_01',
+        'slide-01',
+        'slide01',
+        '슬라이드1',
+    )
+    images_by_stem = {
+        Path(filename).stem.casefold(): filename for filename in images
+    }
+    for stem in preferred_stems:
+        match = images_by_stem.get(stem.casefold())
+        if match:
+            return match
+    return images[0]
+
+
+def read_json_metadata(folder, story_json_path, images_dir):
+    try:
+        with story_json_path.open('r', encoding='utf-8') as file:
+            data = json.load(file)
+    except json.JSONDecodeError as error:
+        raise ArchiveGenerationError(
+            f"{story_json_path}: JSON 문법 오류 "
+            f"({error.lineno}행 {error.colno}열): {error.msg}"
+        ) from error
+    except UnicodeDecodeError as error:
+        raise ArchiveGenerationError(
+            f"{story_json_path}: UTF-8 텍스트로 읽을 수 없습니다."
+        ) from error
+    except OSError as error:
+        raise ArchiveGenerationError(
+            f"{story_json_path}을 읽을 수 없습니다: {error}"
+        ) from error
+
+    if not isinstance(data, dict):
+        raise ArchiveGenerationError(
+            f"{story_json_path}: 최상위 JSON은 객체여야 합니다."
+        )
+
+    slug = require_json_string(data, 'slug', story_json_path)
+    expected_folder = f'bible-storybook-{slug}'
+    if folder != expected_folder:
+        raise ArchiveGenerationError(
+            f"{story_json_path}: slug와 폴더명이 맞지 않습니다. "
+            f"예상 폴더명: {expected_folder}"
+        )
+
+    title = require_json_string(data, 'title', story_json_path)
+    published_text = require_json_string(data, 'published', story_json_path)
+    if not re.fullmatch(r'\d{4}-\d{2}-\d{2}', published_text):
+        raise ArchiveGenerationError(
+            f"{story_json_path}: 'published'는 YYYY-MM-DD 형식이어야 합니다."
+        )
+    try:
+        published = datetime.date.fromisoformat(published_text)
+    except ValueError as error:
+        raise ArchiveGenerationError(
+            f"{story_json_path}: 'published'에 실제 날짜를 입력하세요."
+        ) from error
+
+    cover_image = require_json_string(data, 'cover_image', story_json_path)
+    thumbnail = find_exact_image(
+        images_dir, cover_image, 'cover_image'
+    )
+    return title, published, thumbnail
 
 def get_stories():
     stories = []
@@ -12,55 +156,54 @@ def get_stories():
             index_path = os.path.join(d, 'index.html')
             if not os.path.exists(index_path):
                 continue
-            
-            # Extract title
-            with open(index_path, 'r', encoding='utf-8') as f:
-                content = f.read()
-            title_match = re.search(r'<title>(.*?)(?: - 온라인 성경동화책)?</title>', content)
-            title = title_match.group(1).strip() if title_match else d
-            
-            # Find thumbnail
-            thumbnail = None
-            assets_dir = os.path.join(d, 'assets', 'images')
-            if os.path.exists(assets_dir):
-                images = [f for f in os.listdir(assets_dir) if f.endswith('.png') or f.endswith('.jpg')]
-                # Prefer slide_00.png or slide_01.png
-                preferred = [f for f in images if '00' in f or '01' in f or '1' in f]
-                if preferred:
-                    thumbnail = sorted(preferred)[0]
-                elif images:
-                    thumbnail = sorted(images)[0]
-            
-            if thumbnail:
-                thumbnail_path = f"{d}/assets/images/{thumbnail}"
+
+            story_dir = Path(d)
+            images_dir = story_dir / 'assets' / 'images'
+            if not images_dir.is_dir():
+                raise ArchiveGenerationError(
+                    f"{d}: assets/images 폴더가 없습니다."
+                )
+
+            story_json_path = story_dir / 'story.json'
+            published = None
+            if story_json_path.is_file():
+                title, published, thumbnail = read_json_metadata(
+                    d, story_json_path, images_dir
+                )
             else:
-                thumbnail_path = "default-thumbnail.png"
-                
-            # We'll use a hardcoded order or just sort by modification time (or creation time if available on Mac)
-            # To get a pseudo reverse-chronological order, let's sort by folder mtime, but actually git clone destroys mtime.
-            # So I will hardcode the latest one, and just alphabetical for the rest, or just use the current order.
-            
+                with open(index_path, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                title_match = re.search(
+                    r'<title>(.*?)(?: - 온라인 성경동화책)?</title>',
+                    content,
+                )
+                title = (
+                    html_lib.unescape(title_match.group(1).strip())
+                    if title_match
+                    else d
+                )
+                thumbnail = find_legacy_thumbnail(images_dir)
+
+            if not thumbnail:
+                raise ArchiveGenerationError(
+                    f"{d}: 아카이브에 사용할 이미지를 찾을 수 없습니다."
+                )
+
+            thumbnail_path = f"{d}/assets/images/{thumbnail}"
             stories.append({
                 'folder': d,
                 'title': title,
-                'thumbnail': thumbnail_path
+                'thumbnail': thumbnail_path,
+                'published': published,
             })
-            
-    # List recent folders in order from newest to oldest
-    RECENT_FOLDERS = [
-        'bible-storybook-shining-angel-face',
-        'bible-storybook-one-in-gods-hand',
-        'bible-storybook-special-telescope',
-        'bible-storybook-word-is-best',
-        'bible-storybook-real-king-comes'
-    ]
-    
+
     def sort_key(x):
         folder = x['folder']
+        if x['published'] is not None:
+            return (0, -x['published'].toordinal(), folder)
         if folder in RECENT_FOLDERS:
-            return (0, RECENT_FOLDERS.index(folder))
-        else:
-            return (1, folder)
+            return (1, RECENT_FOLDERS.index(folder), '')
+        return (2, 0, folder)
 
     stories.sort(key=sort_key)
     return stories
@@ -68,16 +211,19 @@ def get_stories():
 def generate_html(stories):
     cards_html = ""
     for story in stories:
+        folder = html_lib.escape(story['folder'], quote=True)
+        title = html_lib.escape(story['title'], quote=True)
+        thumbnail = html_lib.escape(story['thumbnail'], quote=True)
         cards_html += f"""
-            <a href="{story['folder']}/index.html" class="story-card">
+            <a href="{folder}/index.html" class="story-card">
                 <div class="card-image-wrapper">
-                    <img src="{story['thumbnail']}" alt="{story['title']}" loading="lazy">
+                    <img src="{thumbnail}" alt="{title}" loading="lazy">
                     <div class="card-overlay">
                         <span class="read-btn">동화 읽기 ➔</span>
                     </div>
                 </div>
                 <div class="card-content">
-                    <h3 class="card-title">{story['title']}</h3>
+                    <h3 class="card-title">{title}</h3>
                 </div>
             </a>
         """
@@ -349,7 +495,11 @@ body {
         f.write(css)
 
 if __name__ == "__main__":
-    stories = get_stories()
-    generate_html(stories)
-    generate_css()
+    try:
+        stories = get_stories()
+        generate_html(stories)
+        generate_css()
+    except (ArchiveGenerationError, OSError) as error:
+        print(f"오류: 아카이브를 생성할 수 없습니다: {error}")
+        raise SystemExit(1)
     print(f"Archive generated with {len(stories)} stories!")
