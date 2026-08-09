@@ -209,13 +209,12 @@ def get_stories():
     return stories
 
 def generate_html(stories):
-    cards_html = ""
+    cards = []
     for story in stories:
         folder = html_lib.escape(story['folder'], quote=True)
         title = html_lib.escape(story['title'], quote=True)
         thumbnail = html_lib.escape(story['thumbnail'], quote=True)
-        cards_html += f"""
-            <a href="{folder}/index.html" class="story-card">
+        cards.append(f"""            <a href="{folder}/index.html" class="story-card">
                 <div class="card-image-wrapper">
                     <img src="{thumbnail}" alt="{title}" loading="lazy">
                     <div class="card-overlay">
@@ -225,8 +224,9 @@ def generate_html(stories):
                 <div class="card-content">
                     <h3 class="card-title">{title}</h3>
                 </div>
-            </a>
-        """
+            </a>""")
+
+    cards_html = "\n\n".join(cards)
 
     html = f"""<!DOCTYPE html>
 <html lang="ko">
@@ -252,7 +252,7 @@ def generate_html(stories):
 
     <main class="archive-container">
         <div class="grid-layout">
-            {cards_html}
+{cards_html}
         </div>
     </main>
 

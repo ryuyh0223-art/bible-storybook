@@ -115,7 +115,9 @@ def validate_image_filename(filename, field_name, images_dir):
     )
 
 
-def validate_story(data, story_json_path, repository_root):
+def validate_story(
+    data, story_json_path, repository_root, allow_generated_files=False
+):
     if story_json_path.name != "story.json":
         raise StoryGenerationError("입력 파일 이름은 'story.json'이어야 합니다.")
 
@@ -139,10 +141,14 @@ def validate_story(data, story_json_path, repository_root):
             f"폴더명이 slug와 맞지 않습니다. 예상 폴더명: {expected_folder_name}"
         )
 
+    allowed_entries = {"story.json", "assets"}
+    if allow_generated_files:
+        allowed_entries.update(OUTPUT_FILENAMES)
+
     unexpected_entries = sorted(
         item.name
         for item in story_dir.iterdir()
-        if item.name not in {"story.json", "assets"}
+        if item.name not in allowed_entries
     )
     if unexpected_entries:
         raise StoryGenerationError(
@@ -313,7 +319,7 @@ def verify_generated_html(html_text, expected_page_count):
         )
 
 
-def generate_story(story_json_argument):
+def generate_story(story_json_argument, validate_only=False):
     repository_root = Path(__file__).resolve().parent
     story_json_path = Path(story_json_argument).expanduser().resolve()
     if not story_json_path.is_file():
@@ -322,7 +328,12 @@ def generate_story(story_json_argument):
         )
 
     data = load_story_json(story_json_path)
-    story = validate_story(data, story_json_path, repository_root)
+    story = validate_story(
+        data,
+        story_json_path,
+        repository_root,
+        allow_generated_files=validate_only,
+    )
 
     template_dir = repository_root / "templates" / "story"
     template_path = template_dir / "index.html.tpl"
@@ -343,11 +354,20 @@ def generate_story(story_json_argument):
         story_dir / filename for filename in OUTPUT_FILENAMES
     ]
     existing_outputs = [path.name for path in output_paths if path.exists()]
-    if existing_outputs:
+    if existing_outputs and not validate_only:
         raise StoryGenerationError(
             "기존 동화 파일은 덮어쓸 수 없습니다. 이미 존재하는 파일: "
             + ", ".join(existing_outputs)
         )
+
+    if validate_only:
+        missing_outputs = [
+            path.name for path in output_paths if not path.is_file()
+        ]
+        if missing_outputs:
+            raise StoryGenerationError(
+                "검증할 생성 파일이 없습니다: " + ", ".join(missing_outputs)
+            )
 
     try:
         template = template_path.read_text(encoding="utf-8")
@@ -358,6 +378,34 @@ def generate_story(story_json_argument):
 
     rendered_html, page_count = render_story(template, story)
     verify_generated_html(rendered_html, page_count)
+
+    if validate_only:
+        index_path, style_path, script_path = output_paths
+        try:
+            generated_html = index_path.read_text(encoding="utf-8")
+            generated_style = style_path.read_text(encoding="utf-8")
+            generated_script = script_path.read_text(encoding="utf-8")
+            template_style = template_style_path.read_text(encoding="utf-8")
+            template_script = template_script_path.read_text(encoding="utf-8")
+        except (OSError, UnicodeDecodeError) as error:
+            raise StoryGenerationError(
+                f"생성된 동화 파일을 검증할 수 없습니다: {error}"
+            ) from error
+
+        verify_generated_html(generated_html, page_count)
+        mismatches = []
+        if generated_html != rendered_html:
+            mismatches.append("index.html")
+        if generated_style != template_style:
+            mismatches.append("style.css")
+        if generated_script != template_script:
+            mismatches.append("script.js")
+        if mismatches:
+            raise StoryGenerationError(
+                "story.json 또는 현재 템플릿과 다른 생성 파일이 있습니다: "
+                + ", ".join(mismatches)
+            )
+        return story_dir.name, page_count
 
     created_paths = []
     try:
@@ -388,15 +436,24 @@ def generate_story(story_json_argument):
 
 
 def main():
-    if len(sys.argv) != 2:
+    validate_only = len(sys.argv) == 3 and sys.argv[1] == "--validate-only"
+    if not (len(sys.argv) == 2 or validate_only):
         print(
             "사용법: python generate_story.py "
             "bible-storybook-<slug>/story.json"
         )
+        print(
+            "검증: python generate_story.py --validate-only "
+            "bible-storybook-<slug>/story.json"
+        )
         return 2
 
+    story_json_argument = sys.argv[2] if validate_only else sys.argv[1]
+
     try:
-        folder_name, page_count = generate_story(sys.argv[1])
+        folder_name, page_count = generate_story(
+            story_json_argument, validate_only=validate_only
+        )
     except StoryGenerationError as error:
         print(f"오류: {error}")
         return 1
@@ -404,10 +461,16 @@ def main():
         print(f"오류: 파일이나 폴더를 확인할 수 없습니다: {error}")
         return 1
 
-    print(
-        f"성공: '{folder_name}' 동화 폴더를 생성했습니다. "
-        f"총 페이지 수: {page_count}"
-    )
+    if validate_only:
+        print(
+            f"검증 성공: '{folder_name}' 생성 파일이 story.json 및 템플릿과 "
+            f"일치합니다. 총 페이지 수: {page_count}"
+        )
+    else:
+        print(
+            f"성공: '{folder_name}' 동화 폴더를 생성했습니다. "
+            f"총 페이지 수: {page_count}"
+        )
     return 0
 
 
