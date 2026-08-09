@@ -510,14 +510,18 @@ def command_commit(args):
 
 
 def command_verify_push(args):
+    story_dir, folder_slug = resolve_story_folder(args.folder)
+    metadata = load_story_metadata(story_dir, folder_slug)
     ensure_no_merge_or_conflict()
     ensure_remote_sync(False)
     local_main = git_value("rev-parse", "main")
     origin_main = git_value("rev-parse", "origin/main")
     if local_main != origin_main:
         raise PublishError("push 후 local main과 origin/main이 일치하지 않습니다.")
-    print(f"배포 완료: {local_main}")
-    print(f"예상 주소: {expected_pages_url(args.folder)}")
+    print("배포 완료")
+    print(f"동화 제목: {metadata['title']}")
+    print(f"GitHub Pages 예상 주소: {expected_pages_url(args.folder)}")
+    print(f"commit: {local_main}")
 
 
 def build_parser():

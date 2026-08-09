@@ -40,22 +40,25 @@ exit /b 0
 
 :find_python
 if defined HAPPYPANG_PYTHON (
-    if exist "%HAPPYPANG_PYTHON%" exit /b 0
+    if exist "%HAPPYPANG_PYTHON%" (
+        "%HAPPYPANG_PYTHON%" --version >nul 2>&1
+        if not errorlevel 1 exit /b 0
+    )
+    set "HAPPYPANG_PYTHON="
 )
-for /f "delims=" %%P in ('where python.exe 2^>nul') do (
-    if not defined HAPPYPANG_PYTHON set "HAPPYPANG_PYTHON=%%P"
+set "CODEX_PYTHON=%USERPROFILE%\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe"
+if exist "%CODEX_PYTHON%" (
+    "%CODEX_PYTHON%" --version >nul 2>&1
+    if not errorlevel 1 set "HAPPYPANG_PYTHON=%CODEX_PYTHON%"
 )
-if not defined HAPPYPANG_PYTHON (
-    set "CODEX_PYTHON=%USERPROFILE%\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe"
-    if exist "%CODEX_PYTHON%" set "HAPPYPANG_PYTHON=%CODEX_PYTHON%"
+if not defined HAPPYPANG_PYTHON for /f "delims=" %%P in ('where python.exe 2^>nul') do (
+    if not defined HAPPYPANG_PYTHON (
+        "%%P" --version >nul 2>&1
+        if not errorlevel 1 set "HAPPYPANG_PYTHON=%%P"
+    )
 )
 if not defined HAPPYPANG_PYTHON (
     echo 오류: Python 실행 파일을 찾을 수 없습니다.
-    exit /b 1
-)
-"%HAPPYPANG_PYTHON%" --version >nul 2>&1
-if errorlevel 1 (
-    echo 오류: Python을 실행할 수 없습니다: %HAPPYPANG_PYTHON%
     exit /b 1
 )
 exit /b 0
