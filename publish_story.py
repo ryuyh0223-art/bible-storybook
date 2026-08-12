@@ -15,11 +15,16 @@ SUPPORTED_IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp"}
 GENERATED_FILES = {"index.html", "style.css", "script.js"}
 DEPLOYMENT_ROOT_FILES = {"index.html", "archive-style.css"}
 AUTOMATION_DEVELOPMENT_FILES = {
+    "MAC_SETUP.md",
     "generate_archive.py",
     "generate_story.py",
+    "generate_video.py",
     "publish_story.py",
     "upload_git.bat",
+    "업로드실행.command",
     "업로드실행.bat",
+    "영상만들기.command",
+    "영상만들기.bat",
 }
 
 

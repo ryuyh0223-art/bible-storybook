@@ -69,7 +69,9 @@ AUDIO_SAMPLE_RATE = 48000
 AUDIO_BITRATE = "192k"
 
 # ASS 자막 스타일 설정
-SUBTITLE_FONT_NAME = "Malgun Gothic"
+WINDOWS_SUBTITLE_FONT_NAME = "Malgun Gothic"
+MACOS_SUBTITLE_FONT_NAME = "Apple SD Gothic Neo"
+OTHER_SUBTITLE_FONT_NAME = "Noto Sans CJK KR"
 SUBTITLE_FONT_SIZE = 54
 SUBTITLE_MARGIN_LEFT = 120
 SUBTITLE_MARGIN_RIGHT = 120
@@ -87,6 +89,17 @@ STORY_FOLDER_PATTERN = re.compile(
 )
 SUPPORTED_IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp"}
 SUPPORTED_AUDIO_EXTENSIONS = {".wav", ".m4a"}
+REQUIRED_FFMPEG_FILTERS = {
+    "adeclick",
+    "afftdn",
+    "alimiter",
+    "deesser",
+    "equalizer",
+    "loudnorm",
+    "ssim",
+    "subtitles",
+    "xfade",
+}
 
 
 class VideoGenerationError(Exception):
@@ -139,41 +152,89 @@ def find_ffmpeg_tools():
     if tool_is_usable(ffmpeg) and tool_is_usable(ffprobe):
         return Path(ffmpeg), Path(ffprobe)
 
-    local_app_data = os.environ.get("LOCALAPPDATA")
-    if local_app_data:
-        packages_root = (
-            Path(local_app_data) / "Microsoft" / "WinGet" / "Packages"
+    if sys.platform == "win32":
+        local_app_data = os.environ.get("LOCALAPPDATA")
+        if local_app_data:
+            packages_root = (
+                Path(local_app_data) / "Microsoft" / "WinGet" / "Packages"
+            )
+        else:
+            packages_root = (
+                Path.home()
+                / "AppData"
+                / "Local"
+                / "Microsoft"
+                / "WinGet"
+                / "Packages"
+            )
+
+        if packages_root.is_dir():
+            package_dirs = sorted(
+                packages_root.glob("Gyan.FFmpeg_*"),
+                key=lambda path: path.name.casefold(),
+                reverse=True,
+            )
+            for package_dir in package_dirs:
+                for ffmpeg_path in package_dir.rglob("ffmpeg.exe"):
+                    ffprobe_path = ffmpeg_path.with_name("ffprobe.exe")
+                    if (
+                        ffprobe_path.is_file()
+                        and tool_is_usable(ffmpeg_path)
+                        and tool_is_usable(ffprobe_path)
+                    ):
+                        return ffmpeg_path, ffprobe_path
+        guidance = (
+            "새 명령창에서 ffmpeg -version과 ffprobe -version을 확인하거나 "
+            "WinGet Gyan.FFmpeg 설치 상태를 확인하세요."
+        )
+    elif sys.platform == "darwin":
+        for bin_dir in (Path("/opt/homebrew/bin"), Path("/usr/local/bin")):
+            ffmpeg_path = bin_dir / "ffmpeg"
+            ffprobe_path = bin_dir / "ffprobe"
+            if tool_is_usable(ffmpeg_path) and tool_is_usable(ffprobe_path):
+                return ffmpeg_path, ffprobe_path
+        guidance = (
+            "Homebrew에서 'brew install ffmpeg'를 실행한 뒤 새 Terminal에서 "
+            "ffmpeg -version과 ffprobe -version을 확인하세요."
         )
     else:
-        packages_root = (
-            Path.home()
-            / "AppData"
-            / "Local"
-            / "Microsoft"
-            / "WinGet"
-            / "Packages"
+        guidance = (
+            "ffmpeg와 ffprobe를 설치하고 두 실행 파일이 PATH에 포함되었는지 "
+            "확인하세요."
         )
 
-    if packages_root.is_dir():
-        package_dirs = sorted(
-            packages_root.glob("Gyan.FFmpeg_*") ,
-            key=lambda path: path.name.casefold(),
-            reverse=True,
-        )
-        for package_dir in package_dirs:
-            for ffmpeg_path in package_dir.rglob("ffmpeg.exe"):
-                ffprobe_path = ffmpeg_path.with_name("ffprobe.exe")
-                if (
-                    ffprobe_path.is_file()
-                    and tool_is_usable(ffmpeg_path)
-                    and tool_is_usable(ffprobe_path)
-                ):
-                    return ffmpeg_path, ffprobe_path
+    raise VideoGenerationError(f"ffmpeg 또는 ffprobe를 찾을 수 없습니다. {guidance}")
 
-    raise VideoGenerationError(
-        "ffmpeg 또는 ffprobe를 찾을 수 없습니다. 새 명령창을 열어 "
-        "ffmpeg -version과 ffprobe -version을 확인하세요."
+
+def get_subtitle_font_name():
+    configured = os.environ.get("HAPPYPANG_SUBTITLE_FONT", "").strip()
+    if configured:
+        return configured
+    if sys.platform == "win32":
+        return WINDOWS_SUBTITLE_FONT_NAME
+    if sys.platform == "darwin":
+        return MACOS_SUBTITLE_FONT_NAME
+    return OTHER_SUBTITLE_FONT_NAME
+
+
+def verify_ffmpeg_filters(ffmpeg):
+    result = run_process(
+        [ffmpeg, "-hide_banner", "-filters"],
+        "FFmpeg 필터 지원 검사",
+        timeout=30,
     )
+    available = set()
+    for line in result.stdout.splitlines():
+        match = re.match(r"^\s*[.A-Z|]{2,4}\s+([a-zA-Z0-9_]+)\s", line)
+        if match:
+            available.add(match.group(1))
+    missing = sorted(REQUIRED_FFMPEG_FILTERS - available)
+    if missing:
+        raise VideoGenerationError(
+            "설치된 FFmpeg에 영상 자동화 필터가 부족합니다: "
+            + ", ".join(missing)
+            + ". 자막을 포함한 full FFmpeg 빌드를 설치하세요."
+        )
 
 
 def require_string(container, field_name, source_path):
@@ -425,7 +486,7 @@ def measure_edge_silence(ffmpeg, audio_path, duration):
             ),
             "-f",
             "null",
-            "NUL",
+            os.devnull,
         ],
         f"음성 경계 무음 검사 ({audio_path.name})",
         timeout=60,
@@ -822,8 +883,9 @@ def escape_ass_text(text):
 
 
 def write_ass_subtitles(story, timeline, subtitle_path):
+    subtitle_font_name = get_subtitle_font_name()
     style = (
-        f"Style: Default,{SUBTITLE_FONT_NAME},{SUBTITLE_FONT_SIZE},"
+        f"Style: Default,{subtitle_font_name},{SUBTITLE_FONT_SIZE},"
         f"{SUBTITLE_PRIMARY_COLOR},&H000000FF,{SUBTITLE_OUTLINE_COLOR},"
         f"{SUBTITLE_BACKGROUND_COLOR},0,0,0,0,100,100,0,0,3,"
         f"{SUBTITLE_OUTLINE},0,2,{SUBTITLE_MARGIN_LEFT},"
@@ -1106,7 +1168,7 @@ def verify_scene_images(ffmpeg, video_path, image_paths, timeline, master_durati
                 "1",
                 "-f",
                 "null",
-                "NUL",
+                os.devnull,
             ],
             f"최종 영상 장면 확인 ({image_path.name})",
             timeout=60,
@@ -1195,6 +1257,7 @@ def validate_video_settings():
 def generate_video(folder_argument):
     validate_video_settings()
     ffmpeg, ffprobe = find_ffmpeg_tools()
+    verify_ffmpeg_filters(ffmpeg)
     story_dir, folder_slug = resolve_story_folder(folder_argument)
     story = load_video_story(story_dir, folder_slug)
     inputs = validate_inputs(folder_argument, story_dir, story)
