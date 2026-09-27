@@ -1,0 +1,529 @@
+/* ===== 전역 스타일 및 CSS 변수 ===== */
+:root {
+    --color-primary: #F5E6D3;
+    --color-secondary: #D4A574;
+    --color-accent: #E8952D;
+    --color-text: #4A3728;
+    --color-text-light: #6B5647;
+    --color-bg: #FFF9F0;
+    --color-white: #FFFFFF;
+    --color-shadow: rgba(74, 55, 40, 0.1);
+    --color-shadow-dark: rgba(74, 55, 40, 0.2);
+
+    --font-family: 'Noto Sans KR', sans-serif;
+    --font-size-base: 1rem;
+    --font-size-small: 0.9rem;
+    --font-size-medium: 1.2rem;
+    --font-size-large: 1.5rem;
+
+    --transition-speed: 0.3s;
+    --page-transition: 0.6s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background: linear-gradient(135deg, #FFF9F0 0%, #F5E6D3 100%);
+    color: var(--color-text);
+    line-height: 1.7;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== 헤더 스타일 (제목 + 음악 버튼) ===== */
+.header {
+    background: var(--color-white);
+    padding: 0.8rem 1.5rem;
+    box-shadow: 0 2px 10px var(--color-shadow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.title {
+    font-size: 1.2rem;
+    color: var(--color-accent);
+    font-weight: 700;
+    margin: 0;
+    text-align: center;
+}
+
+.btn-music {
+    position: absolute;
+    right: 1.5rem;
+    background: linear-gradient(135deg, #E8952D 0%, #D4A574 100%);
+    border: none;
+    color: var(--color-white);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-speed);
+    box-shadow: 0 2px 8px rgba(232, 149, 45, 0.3);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.btn-music:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(232, 149, 45, 0.4);
+}
+
+.btn-music.playing {
+    animation: pulse-rotate 2s ease-in-out infinite;
+}
+
+@keyframes pulse-rotate {
+
+    0%,
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+
+    50% {
+        transform: scale(1.05) rotate(180deg);
+    }
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.text-size-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.control-label {
+    font-size: 0.8rem;
+    color: var(--color-text-light);
+    white-space: nowrap;
+}
+
+.btn-text-size {
+    background: var(--color-primary);
+    border: 2px solid var(--color-secondary);
+    color: var(--color-text);
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all var(--transition-speed);
+    font-size: 0.8rem;
+}
+
+.btn-text-size:hover {
+    background: var(--color-secondary);
+    transform: translateY(-2px);
+}
+
+.btn-text-size.active {
+    background: var(--color-accent);
+    color: var(--color-white);
+    border-color: var(--color-accent);
+}
+
+/* ===== 메인 콘텐츠 ===== */
+.main-content {
+    position: relative;
+    flex: 1;
+    padding: 0;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.book-container {
+    padding: 0;
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== 이미지 슬라이더 (상단 고정) ===== */
+.image-container {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    overflow: hidden;
+    border-radius: 0;
+    box-shadow: none;
+    background: var(--color-white);
+}
+
+.image-slider {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: 55vh;
+}
+
+.image-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    background: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-slide.active {
+    opacity: 1;
+}
+
+.image-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* ===== 텍스트 콘텐츠 (스크롤 영역) ===== */
+.text-container {
+    position: relative;
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 1.5rem;
+    margin-top: 0;
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-secondary) var(--color-primary);
+}
+
+.text-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.text-container::-webkit-scrollbar-track {
+    background: var(--color-primary);
+    border-radius: 10px;
+}
+
+.text-container::-webkit-scrollbar-thumb {
+    background: var(--color-secondary);
+    border-radius: 10px;
+}
+
+.text-container::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent);
+}
+
+.text-page {
+    display: none;
+}
+
+.text-page.active {
+    display: block;
+}
+
+.page-title {
+    color: var(--color-accent);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 3px solid var(--color-secondary);
+    padding-bottom: 0.5rem;
+}
+
+.cover-title {
+    font-size: 2rem;
+    text-align: center;
+    border-bottom: none;
+    margin-bottom: 1rem;
+    color: var(--color-accent);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.center-align {
+    text-align: center;
+}
+
+.page-content {
+    font-size: var(--font-size-base);
+}
+
+.page-content p {
+    margin-bottom: 1rem;
+}
+
+.page-content em {
+    color: var(--color-text-light);
+    font-style: italic;
+}
+
+.page-content strong {
+    color: var(--color-accent);
+    font-weight: 700;
+}
+
+/* 텍스트 크기 조절 */
+body.text-small .page-content {
+    font-size: var(--font-size-small);
+}
+
+body.text-medium .page-content {
+    font-size: var(--font-size-base);
+}
+
+body.text-large .page-content {
+    font-size: var(--font-size-medium);
+}
+
+body.text-large .page-title {
+    font-size: 1.8rem;
+}
+
+/* 하이라이트 박스 */
+.highlight-box,
+.prayer-box,
+.tip-box {
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 5px solid var(--color-accent);
+}
+
+.highlight-box {
+    background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+}
+
+.prayer-box {
+    background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+    border-left-color: #2196F3;
+}
+
+.tip-box {
+    background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%);
+    border-left-color: #9C27B0;
+}
+
+.highlight-box h3,
+.prayer-box h3,
+.tip-box h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+    color: var(--color-text);
+}
+
+/* ===== 네비게이션 ===== */
+.navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.nav-btn {
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-secondary) 100%);
+    border: none;
+    color: var(--color-white);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    font-size: 2.2rem;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    box-shadow: 0 4px 15px var(--color-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.nav-btn:hover:not(:disabled) {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px var(--color-shadow-dark);
+}
+
+.nav-btn:disabled {
+    background: #CCC;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.page-indicator {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #DDD;
+    transition: all var(--transition-speed);
+    cursor: pointer;
+}
+
+.dot.active {
+    background: var(--color-accent);
+    transform: scale(1.3);
+}
+
+.dot:hover {
+    background: var(--color-secondary);
+}
+
+/* ===== 데스크탑/태블릿 최적화 (사이즈 이원화) ===== */
+@media (min-width: 1024px) {
+    :root {
+        --font-size-base: 1.2rem;
+    }
+
+    .main-content {
+        max-width: none;
+        padding: 0;
+    }
+
+    .book-container {
+        padding: 0;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .title {
+        font-size: 1.8rem;
+    }
+
+    .image-container {
+        flex: none;
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        position: sticky;
+        top: 0;
+        box-shadow: none;
+        background: transparent;
+    }
+
+    .image-slider {
+        max-height: 50vh;
+        height: 50vh;
+        aspect-ratio: auto;
+    }
+
+    .image-slide img {
+        object-fit: contain;
+        background: var(--color-bg);
+        border-radius: 0;
+    }
+
+    .text-container {
+        flex: 1;
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        margin-top: 0;
+        height: auto;
+        padding: 1.5rem;
+    }
+
+    .nav-btn {
+        width: 80px;
+        height: 80px;
+        font-size: 2.5rem;
+        box-shadow: 0 6px 20px var(--color-shadow);
+    }
+
+    .btn-music {
+        width: 50px;
+        height: 50px;
+        font-size: 1.4rem;
+    }
+
+    .page-title {
+        font-size: 2rem;
+    }
+
+    .page-content p {
+        line-height: 2;
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* ===== 반응형 디자인 (모바일) ===== */
+@media (max-width: 768px) {
+    .header {
+        padding: 0.8rem 1rem;
+    }
+
+    .title {
+        font-size: 1rem;
+    }
+
+    .btn-music {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+        right: 1rem;
+    }
+
+    .controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .book-container {
+        padding: 0;
+    }
+
+    .page-title {
+        font-size: 1.2rem;
+    }
+
+    .nav-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 1.8rem;
+    }
+
+    .navigation {
+        gap: 0.5rem;
+        padding: 0 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-content {
+        padding: 0;
+    }
+
+    .controls {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+    }
+
+    .page-content {
+        font-size: 0.95rem;
+    }
+
+    body.text-large .page-content {
+        font-size: 1.3rem;
+    }
+}

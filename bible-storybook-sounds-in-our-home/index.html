@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>우리 집에 어떤 소리가 살까? - 온라인 성경동화책</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="header">
+        <h1 class="title">🏡 우리 집에 어떤 소리가 살까?</h1>
+        <button class="btn-music" id="musicToggle" aria-label="찬양" title="찬양 재생/정지">
+            ♪
+        </button>
+    </header>
+
+    <main class="main-content">
+        <div class="book-container">
+            <div class="image-container">
+                <div class="image-slider" id="imageSlider">
+                    <div class="image-slide active"><img src="assets/images/slide_00.png" alt="표지: 우리 집에 어떤 소리가 살까?" loading="lazy"></div>
+                    <div class="image-slide"><img src="assets/images/slide_01.png" alt="저녁 거실 한가운데에서 현관문과 식탁의 여러 소리에 귀 기울이는 송천이" loading="lazy"></div>
+                    <div class="image-slide"><img src="assets/images/slide_02.png" alt="지친 아빠와 바쁜 엄마 사이에서 장난감을 든 채 눈치를 보는 송천이" loading="lazy"></div>
+                    <div class="image-slide"><img src="assets/images/slide_03.png" alt="작은 의자 위에서 두 팔을 번쩍 들고 가족에게 사이좋게 지내라고 외치는 송천이" loading="lazy"></div>
+                    <div class="image-slide"><img src="assets/images/slide_04.png" alt="의자 위에서 큰 목소리로 가족에게 여러 가지를 지시하는 송천이와 어리둥절한 부모님" loading="lazy"></div>
+                    <div class="image-slide"><img src="assets/images/slide_05.png" alt="밤에 침대 위에서 무릎을 끌어안고 가족을 바꾸려 했던 일을 생각하는 송천이" loading="lazy"></div>
+                    <div class="image-slide"><img src="assets/images/slide_06.png" alt="포근하고 고요한 밤에 침대 곁에 무릎을 꿇고 두 손 모아 기도하는 송천이" loading="lazy"></div>
+                    <div class="image-slide"><img src="assets/images/slide_07.png" alt="다음 날 아침 식탁 아래에 떨어진 수저를 먼저 주워 엄마에게 건네는 송천이" loading="lazy"></div>
+                    <div class="image-slide"><img src="assets/images/slide_08.png" alt="퇴근한 아빠의 가방을 받아 들고 안부를 묻는 송천이와 머리를 쓰다듬는 아빠" loading="lazy"></div>
+                    <div class="image-slide"><img src="assets/images/slide_09.png" alt="식탁에 쏟은 물을 작은 행주로 닦는 송천이와 함께 닦아 주는 엄마" loading="lazy"></div>
+                    <div class="image-slide"><img src="assets/images/slide_10.png" alt="찬송을 흥얼거리며 장난감을 정리하는 송천이와 함께 미소 짓고 흥얼거리는 부모님" loading="lazy"></div>
+                    <div class="image-slide"><img src="assets/images/slide_11.png" alt="따뜻한 저녁 식탁에서 서로 반찬을 건네며 고마워와 괜찮아를 말하는 송천이 가족" loading="lazy"></div>
+                </div>
+            </div>
+
+            <div class="text-container" id="textContainer">
+                <div class="text-page active">
+                    <h2 class="page-title cover-title">우리 집에 어떤 소리가 살까?</h2>
+                    <div class="page-content center-align">
+                        <p><strong>가정예배를 위한 준비:</strong> 아이를 무릎에 앉히고 편안한 분위기를 만들어주세요. 오른쪽 위 음악 버튼(♪)을 눌러 찬양을 틀어놓고 이야기 여행을 시작해 봅시다.</p>
+                        <br>
+                        <p><strong>주제 말씀:</strong> &quot;하나님은 화평 중에서 너희를 부르셨느니라.&quot; (고린도전서 7장 15절)</p>
+
+                        <div class="prayer-box" style="text-align: left; margin-top: 2rem;">
+                            <h3>🙏 성경동화 읽기 전 기도</h3>
+                            <p>하나님, 우리 가족을 선물로 주셔서 감사해요.</p>
+                            <p>오늘 이야기를 들으며 우리 집에 하나님의 사랑이 가득해지는 길을 알게 해 주세요. 아멘.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-page">
+                    <div class="page-content">
+                        <p>송천이는 가만히 귀를 기울였어요.</p>
+                        <p>쾅!</p>
+                        <p>달그락!</p>
+                        <p>휴우…….</p>
+                        <p>“어라? 오늘 우리 집에는 이상한 소리만 사네?”</p>
+                    </div>
+                </div>
+
+                <div class="text-page">
+                    <div class="page-content">
+                        <p>아빠는 아주 피곤해 보였어요.</p>
+                        <p>엄마도 할 일이 잔뜩 있었지요.</p>
+                        <p>“아빠, 나랑 놀…….”</p>
+                        <p>“송천아, 조금만 있다가.”</p>
+                        <p>“엄마, 이것 좀…….”</p>
+                        <p>“송천아, 엄마도 잠깐만.”</p>
+                        <p>송천이는 입을 쏙 다물었어요.</p>
+                    </div>
+                </div>
+
+                <div class="text-page">
+                    <div class="page-content">
+                        <p>그때 송천이에게 멋진 생각이 떠올랐어요.</p>
+                        <p>“그래! 내가 우리 집을 바꿔야겠다!”</p>
+                        <p>송천이는 의자 위에 척 올라갔어요.</p>
+                        <p>“자아! 지금부터 모두 사이좋게 지내세요!</p>
+                        <p>그리고 기도도 해야 합니다!”</p>
+                    </div>
+                </div>
+
+                <div class="text-page">
+                    <div class="page-content">
+                        <p>“아빠! 웃으세요!”</p>
+                        <p>“엄마! 화내면 안 돼요!”</p>
+                        <p>“그리고 다 같이 찬송!”</p>
+                        <p>하지만 이상했어요.</p>
+                        <p>송천이의 목소리는 자꾸자꾸 커졌고,</p>
+                        <p>집 안도 자꾸자꾸 시끄러워졌어요.</p>
+                    </div>
+                </div>
+
+                <div class="text-page">
+                    <div class="page-content">
+                        <p>밤이 되었어요.</p>
+                        <p>송천이는 생각했어요.</p>
+                        <p>‘내가 이렇게 많이 말했는데……</p>
+                        <p>왜 우리 집은 하나도 따뜻해지지 않았지?’</p>
+                        <p>그때 송천이는 조용히 두 손을 모았어요.</p>
+                    </div>
+                </div>
+
+                <div class="text-page">
+                    <div class="page-content">
+                        <p>“하나님,</p>
+                        <p>우리 가족을 제가 바꾸려고 했어요.</p>
+                        <p>그런데 잘 안 돼요.</p>
+                        <p>제가 먼저 예수님처럼 사랑하게 해 주세요.</p>
+                        <p>그리고 우리 집을 꼭 지켜 주세요.”</p>
+                        <p>방 안이 아주 조용해졌어요.</p>
+                    </div>
+                </div>
+
+                <div class="text-page">
+                    <div class="page-content">
+                        <p>다음 날 아침이었어요.</p>
+                        <p>딸랑!</p>
+                        <p>수저 하나가 바닥에 떨어졌어요.</p>
+                        <p>어제 같았으면 송천이는 그냥 지나갔을 거예요.</p>
+                        <p>하지만 오늘은 달랐어요.</p>
+                        <p>“엄마, 내가 주울게!”</p>
+                        <p>엄마가 송천이를 바라보았어요.</p>
+                        <p>“어? ……고마워.”</p>
+                    </div>
+                </div>
+
+                <div class="text-page">
+                    <div class="page-content">
+                        <p>저녁에 아빠가 돌아왔어요.</p>
+                        <p>예전 같으면 송천이는 외쳤을 거예요.</p>
+                        <p>“아빠! 놀아 줘! 지금! 지금!”</p>
+                        <p>그런데 송천이는 아빠 얼굴을 한번 보더니 말했어요.</p>
+                        <p>“아빠, 오늘 많이 힘들었어?”</p>
+                        <p>아빠가 잠시 멈췄어요.</p>
+                        <p>그리고 송천이의 머리를 쓰다듬었어요.</p>
+                        <p>“응. 그런데 지금 조금 괜찮아졌네.”</p>
+                    </div>
+                </div>
+
+                <div class="text-page">
+                    <div class="page-content">
+                        <p>그런데 그날 저녁,</p>
+                        <p>철퍽!</p>
+                        <p>송천이가 물을 쏟고 말았어요.</p>
+                        <p>송천이의 입이 삐죽 나왔어요.</p>
+                        <p>핑계를 대고 싶었지요.</p>
+                        <p>하지만 잠깐 멈췄어요.</p>
+                        <p>“엄마, 미안해. 내가 닦을게.”</p>
+                        <p>엄마도 잠깐 멈췄어요.</p>
+                        <p>“괜찮아. 같이 닦자.”</p>
+                    </div>
+                </div>
+
+                <div class="text-page">
+                    <div class="page-content">
+                        <p>며칠 뒤였어요.</p>
+                        <p>송천이는 장난감을 정리하며</p>
+                        <p>작은 목소리로 찬송을 흥얼거렸어요.</p>
+                        <p>“음~ 음~ 음~♪”</p>
+                        <p>그런데 어디선가 또 하나의 소리가 들렸어요.</p>
+                        <p>“음~ 음~♪”</p>
+                        <p>엄마였어요.</p>
+                        <p>잠시 뒤 아빠도 피식 웃었어요.</p>
+                        <p>송천이는 아무 말도 하지 않았어요.</p>
+                        <p>그냥 씨익 웃었답니다.</p>
+                    </div>
+                </div>
+
+                <div class="text-page">
+                    <div class="page-content">
+                        <p>그날 밤, 송천이는 다시 귀를 쫑긋 세웠어요.</p>
+                        <p>달그락.</p>
+                        <p>“여기 있어.”</p>
+                        <p>“고마워.”</p>
+                        <p>“괜찮아.”</p>
+                        <p>그리고 아주 작은 찬송 소리.</p>
+                        <p>송천이가 방긋 웃었어요.</p>
+                        <p>“아하.</p>
+                        <p>우리 집에 사는 소리가 달라졌네.”</p>
+                        <p>그리고 그날도 송천이는 잠들기 전,</p>
+                        <p>가족의 이름을 하나씩 부르며 기도했답니다.</p>
+
+                        <div class="highlight-box">
+                            <h3>📌 함께 나누는 질문</h3>
+                            <p>1. 송천이는 처음에 가족을 어떻게 바꾸려고 했을까요? 나중에는 무엇이 달라졌을까요?</p>
+                            <p>2. 우리 집에 ‘고마워’, ‘미안해’, ‘사랑해’ 중 어떤 소리를 더 많이 들려주고 싶나요?</p>
+                        </div>
+                        <div class="prayer-box">
+                            <h3>🙏 마무리 기도</h3>
+                            <p>하나님, 우리 가족을 사랑해 주셔서 감사해요.</p>
+                            <p>다른 사람을 바꾸려고 하기보다 제가 먼저 사랑하고 섬기게 해 주세요.</p>
+                            <p>우리 가족의 이름을 부르며 포기하지 않고 기도하게 해 주세요.</p>
+                            <p>우리 집에 하나님의 평화를 가득 채워 주세요. 아멘.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-btn nav-prev" id="prevBtn" disabled aria-label="이전 페이지">‹</button>
+            <div class="page-indicator" id="pageIndicator">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            <button class="nav-btn nav-next" id="nextBtn" aria-label="다음 페이지">›</button>
+        </div>
+    </main>
+
+    <div id="youtube-player" style="position: fixed; bottom: 0; left: 0; pointer-events: none; opacity: 0;"></div>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="script.js"></script>
+</body>
+</html>
