@@ -193,8 +193,18 @@ def validate_story(
         image = require_string(scene, "image")
         alt = require_string(scene, "alt")
         paragraphs = require_string_list(scene, "paragraphs")
+        emphasis = (
+            require_string_list(scene, "emphasis") if "emphasis" in scene else []
+        )
+        for phrase in emphasis:
+            if not any(phrase in paragraph for paragraph in paragraphs):
+                raise StoryGenerationError(
+                    f"scenes[{index}].emphasis의 문구가 본문에 없습니다: {phrase}"
+                )
         validate_image_filename(image, f"scenes[{index}].image", images_dir)
-        scenes.append({"image": image, "alt": alt, "paragraphs": paragraphs})
+        scenes.append(
+            {"image": image, "alt": alt, "paragraphs": paragraphs, "emphasis": emphasis}
+        )
 
     return {
         "slug": slug,
@@ -216,10 +226,20 @@ def escaped(value):
     return html.escape(value, quote=True)
 
 
-def render_paragraphs(paragraphs, indentation):
+def render_paragraphs(paragraphs, indentation, emphasis=()):
     return "\n".join(
-        f"{indentation}<p>{escaped(paragraph)}</p>" for paragraph in paragraphs
+        f"{indentation}<p>{render_inline_text(paragraph, emphasis)}</p>"
+        for paragraph in paragraphs
     )
+
+
+def render_inline_text(value, emphasis=()):
+    safe_text = escaped(value).replace("\n", "<br>")
+    if not emphasis:
+        return safe_text
+    phrases = sorted({escaped(phrase) for phrase in emphasis}, key=len, reverse=True)
+    pattern = "|".join(re.escape(phrase) for phrase in phrases)
+    return re.sub(pattern, lambda match: f"<strong>{match.group(0)}</strong>", safe_text)
 
 
 def render_story(template, story):
@@ -241,7 +261,9 @@ def render_story(template, story):
         page_lines = [
             '                <div class="text-page">',
             '                    <div class="page-content">',
-            render_paragraphs(scene["paragraphs"], "                        "),
+            render_paragraphs(
+                scene["paragraphs"], "                        ", scene.get("emphasis", ())
+            ),
         ]
         if index == last_scene_index:
             page_lines.extend(
