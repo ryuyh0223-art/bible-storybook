@@ -302,6 +302,14 @@ function pictureFor(s){
 }
 
 
+// Keep the injured traveler to the right of the person helping him.
+// Mirror only the illustration, without changing text or controls.
+const MIRRORED_PICTURES=new Set([
+ 'merchant_care1','priest_care1',
+ 'priest_carry0_g0','priest_carry0_g1','priest_last1',
+ 'samaritan_care0','samaritan_care1',
+ 'samaritan_carry0','samaritan_carry1','samaritan_last0'
+]);
 let renderRevision=0,renderPending=false,passageActive=false,passageTimer=null;
 const artLoads=new Map();
 function prepareArt(key){
@@ -365,7 +373,10 @@ async function render(){
  $('viewport').setAttribute('aria-busy','false');
  $('start').classList.toggle('hide',!select);$('storyPanel').classList.toggle('hide',select||s.type!=='story');$('choicePanel').classList.toggle('hide',select||s.type!=='quiz');$('endingPanel').classList.toggle('hide',select||s.type!=='ending');$('reflectionPanel').classList.toggle('hide',select||s.type!=='reflection');
  renderInventory(s);
- if(pictureReady)$('bg').style.backgroundImage='url('+JSON.stringify(ART[pic]) +')';
+ if(pictureReady){
+  $('bg').style.backgroundImage='url('+JSON.stringify(ART[pic]) +')';
+  $('bg').classList.toggle('is-mirrored',MIRRORED_PICTURES.has(pic));
+ }
  $('viewport').className='viewport '+(select?'on-start':s.type==='ending'?'on-ending':s.type==='reflection'?'on-reflection':s.type==='quiz'?'on-choice':'on-story')+' scene-'+(s?.bg||'vista')+(s?.close?' close-shot':'')+(s?.sunset?' sunset':'')+(s?.carrying?' on-carry':'');
  $('roleName').textContent=r?r.name:'미션! 여리고 가는 길';$('missionName').textContent=r?r.mission:'누구의 이야기를 시작할까?';
  $('stageMark').textContent=select?'시작':s.type==='ending'||s.type==='reflection'?'이야기의 끝':s.type==='quiz'?'선택의 순간':({city:'여리고',inn:'길가의 주막',road:'광야길'}[s.bg]||'여리고로 가는 길');
