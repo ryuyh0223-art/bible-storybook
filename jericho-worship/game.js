@@ -279,7 +279,6 @@ function renderInventory(s){
    icon.innerHTML='<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+INVENTORY_ICONS[item.icon]+'</svg>';
    if(item.count!==undefined)icon.appendChild(mk('span','inventory-count','×'+item.count));
    const copy=mk('span','inventory-copy');copy.appendChild(mk('span','inventory-name',item.name));
-   copy.appendChild(mk('span','inventory-status',item.status));
    cell.appendChild(icon);cell.appendChild(copy);
    if(item.level!==undefined){const meter=mk('span','inventory-meter');meter.setAttribute('aria-hidden','true');const fill=mk('span');fill.style.width=item.level+'%';meter.appendChild(fill);cell.appendChild(meter)}
    host.appendChild(cell);
