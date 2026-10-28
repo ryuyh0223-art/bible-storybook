@@ -1,0 +1,20 @@
+{
+  "ultrawide": {
+    "x": 320,
+    "y": 0,
+    "width": 1920,
+    "height": 1080,
+    "top": 0,
+    "right": 2240,
+    "bottom": 1080,
+    "left": 320
+  },
+  "give": "기름·포도주\n일부 사용\n물주머니\n물이 있어\n짐보따리\n나귀에 실음\n나귀\n짐을 싣고 있어\n은전\n여행 경비",
+  "carry": "기름·포도주\n일부 사용\n물주머니\n물이 있어\n짐보따리\n등에 멤\n나귀\n나그네가 타고 있어\n은전\n여행 경비",
+  "carryEnergy": "2",
+  "night": "night",
+  "nightEnergy": "1",
+  "morning": "morning",
+  "expired": "mission-expired just-expired",
+  "reducedMotion": true
+}

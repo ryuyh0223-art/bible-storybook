@@ -1,0 +1,1857 @@
+{
+  "routes": [
+    {
+      "label": "desktop-mission",
+      "role": 0,
+      "choices": [
+        0,
+        0
+      ],
+      "end": "미션 성공!",
+      "steps": 19
+    },
+    {
+      "label": "desktop-0-1000",
+      "role": 0,
+      "choices": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 30
+    },
+    {
+      "label": "desktop-0-1001",
+      "role": 0,
+      "choices": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 30
+    },
+    {
+      "label": "desktop-0-1010",
+      "role": 0,
+      "choices": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 30
+    },
+    {
+      "label": "desktop-0-1011",
+      "role": 0,
+      "choices": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 30
+    },
+    {
+      "label": "desktop-0-1100",
+      "role": 0,
+      "choices": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 31
+    },
+    {
+      "label": "desktop-0-1101",
+      "role": 0,
+      "choices": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 31
+    },
+    {
+      "label": "desktop-0-1110",
+      "role": 0,
+      "choices": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 31
+    },
+    {
+      "label": "desktop-0-1111",
+      "role": 0,
+      "choices": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 31
+    },
+    {
+      "label": "desktop-0-01000",
+      "role": 0,
+      "choices": [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "desktop-0-01001",
+      "role": 0,
+      "choices": [
+        0,
+        1,
+        0,
+        0,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "desktop-0-01010",
+      "role": 0,
+      "choices": [
+        0,
+        1,
+        0,
+        1,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "desktop-0-01011",
+      "role": 0,
+      "choices": [
+        0,
+        1,
+        0,
+        1,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "desktop-0-01100",
+      "role": 0,
+      "choices": [
+        0,
+        1,
+        1,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 37
+    },
+    {
+      "label": "desktop-0-01101",
+      "role": 0,
+      "choices": [
+        0,
+        1,
+        1,
+        0,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 37
+    },
+    {
+      "label": "desktop-0-01110",
+      "role": 0,
+      "choices": [
+        0,
+        1,
+        1,
+        1,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 37
+    },
+    {
+      "label": "desktop-0-01111",
+      "role": 0,
+      "choices": [
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 37
+    },
+    {
+      "label": "desktop-1-mission",
+      "role": 1,
+      "choices": [
+        0,
+        0
+      ],
+      "end": "미션 성공!",
+      "steps": 19
+    },
+    {
+      "label": "desktop-1-1000",
+      "role": 1,
+      "choices": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 30
+    },
+    {
+      "label": "desktop-1-1001",
+      "role": 1,
+      "choices": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 30
+    },
+    {
+      "label": "desktop-1-1010",
+      "role": 1,
+      "choices": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 30
+    },
+    {
+      "label": "desktop-1-1011",
+      "role": 1,
+      "choices": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 30
+    },
+    {
+      "label": "desktop-1-1100",
+      "role": 1,
+      "choices": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 30
+    },
+    {
+      "label": "desktop-1-1101",
+      "role": 1,
+      "choices": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 30
+    },
+    {
+      "label": "desktop-1-1110",
+      "role": 1,
+      "choices": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 30
+    },
+    {
+      "label": "desktop-1-1111",
+      "role": 1,
+      "choices": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 30
+    },
+    {
+      "label": "desktop-1-01000",
+      "role": 1,
+      "choices": [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "desktop-1-01001",
+      "role": 1,
+      "choices": [
+        0,
+        1,
+        0,
+        0,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "desktop-1-01010",
+      "role": 1,
+      "choices": [
+        0,
+        1,
+        0,
+        1,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "desktop-1-01011",
+      "role": 1,
+      "choices": [
+        0,
+        1,
+        0,
+        1,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "desktop-1-01100",
+      "role": 1,
+      "choices": [
+        0,
+        1,
+        1,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "desktop-1-01101",
+      "role": 1,
+      "choices": [
+        0,
+        1,
+        1,
+        0,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "desktop-1-01110",
+      "role": 1,
+      "choices": [
+        0,
+        1,
+        1,
+        1,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "desktop-1-01111",
+      "role": 1,
+      "choices": [
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "desktop-2-mission",
+      "role": 2,
+      "choices": [
+        0,
+        0
+      ],
+      "end": "미션 성공!",
+      "steps": 19
+    },
+    {
+      "label": "desktop-2-1000",
+      "role": 2,
+      "choices": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 31
+    },
+    {
+      "label": "desktop-2-1001",
+      "role": 2,
+      "choices": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 31
+    },
+    {
+      "label": "desktop-2-1010",
+      "role": 2,
+      "choices": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 31
+    },
+    {
+      "label": "desktop-2-1011",
+      "role": 2,
+      "choices": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 31
+    },
+    {
+      "label": "desktop-2-1100",
+      "role": 2,
+      "choices": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 30
+    },
+    {
+      "label": "desktop-2-1101",
+      "role": 2,
+      "choices": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 30
+    },
+    {
+      "label": "desktop-2-1110",
+      "role": 2,
+      "choices": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 30
+    },
+    {
+      "label": "desktop-2-1111",
+      "role": 2,
+      "choices": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 30
+    },
+    {
+      "label": "desktop-2-01000",
+      "role": 2,
+      "choices": [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 37
+    },
+    {
+      "label": "desktop-2-01001",
+      "role": 2,
+      "choices": [
+        0,
+        1,
+        0,
+        0,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 37
+    },
+    {
+      "label": "desktop-2-01010",
+      "role": 2,
+      "choices": [
+        0,
+        1,
+        0,
+        1,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 37
+    },
+    {
+      "label": "desktop-2-01011",
+      "role": 2,
+      "choices": [
+        0,
+        1,
+        0,
+        1,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 37
+    },
+    {
+      "label": "desktop-2-01100",
+      "role": 2,
+      "choices": [
+        0,
+        1,
+        1,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "desktop-2-01101",
+      "role": 2,
+      "choices": [
+        0,
+        1,
+        1,
+        0,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "desktop-2-01110",
+      "role": 2,
+      "choices": [
+        0,
+        1,
+        1,
+        1,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "desktop-2-01111",
+      "role": 2,
+      "choices": [
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "mobile-mission",
+      "role": 0,
+      "choices": [
+        0,
+        0
+      ],
+      "end": "미션 성공!",
+      "steps": 19
+    },
+    {
+      "label": "mobile-0-1000",
+      "role": 0,
+      "choices": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 30
+    },
+    {
+      "label": "mobile-0-1001",
+      "role": 0,
+      "choices": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 30
+    },
+    {
+      "label": "mobile-0-1010",
+      "role": 0,
+      "choices": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 30
+    },
+    {
+      "label": "mobile-0-1011",
+      "role": 0,
+      "choices": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 30
+    },
+    {
+      "label": "mobile-0-1100",
+      "role": 0,
+      "choices": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 31
+    },
+    {
+      "label": "mobile-0-1101",
+      "role": 0,
+      "choices": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 31
+    },
+    {
+      "label": "mobile-0-1110",
+      "role": 0,
+      "choices": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 31
+    },
+    {
+      "label": "mobile-0-1111",
+      "role": 0,
+      "choices": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 31
+    },
+    {
+      "label": "mobile-0-01000",
+      "role": 0,
+      "choices": [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "mobile-0-01001",
+      "role": 0,
+      "choices": [
+        0,
+        1,
+        0,
+        0,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "mobile-0-01010",
+      "role": 0,
+      "choices": [
+        0,
+        1,
+        0,
+        1,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "mobile-0-01011",
+      "role": 0,
+      "choices": [
+        0,
+        1,
+        0,
+        1,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "mobile-0-01100",
+      "role": 0,
+      "choices": [
+        0,
+        1,
+        1,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 37
+    },
+    {
+      "label": "mobile-0-01101",
+      "role": 0,
+      "choices": [
+        0,
+        1,
+        1,
+        0,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 37
+    },
+    {
+      "label": "mobile-0-01110",
+      "role": 0,
+      "choices": [
+        0,
+        1,
+        1,
+        1,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 37
+    },
+    {
+      "label": "mobile-0-01111",
+      "role": 0,
+      "choices": [
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 37
+    },
+    {
+      "label": "mobile-1-mission",
+      "role": 1,
+      "choices": [
+        0,
+        0
+      ],
+      "end": "미션 성공!",
+      "steps": 19
+    },
+    {
+      "label": "mobile-1-1000",
+      "role": 1,
+      "choices": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 30
+    },
+    {
+      "label": "mobile-1-1001",
+      "role": 1,
+      "choices": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 30
+    },
+    {
+      "label": "mobile-1-1010",
+      "role": 1,
+      "choices": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 30
+    },
+    {
+      "label": "mobile-1-1011",
+      "role": 1,
+      "choices": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 30
+    },
+    {
+      "label": "mobile-1-1100",
+      "role": 1,
+      "choices": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 30
+    },
+    {
+      "label": "mobile-1-1101",
+      "role": 1,
+      "choices": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 30
+    },
+    {
+      "label": "mobile-1-1110",
+      "role": 1,
+      "choices": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 30
+    },
+    {
+      "label": "mobile-1-1111",
+      "role": 1,
+      "choices": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 30
+    },
+    {
+      "label": "mobile-1-01000",
+      "role": 1,
+      "choices": [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "mobile-1-01001",
+      "role": 1,
+      "choices": [
+        0,
+        1,
+        0,
+        0,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "mobile-1-01010",
+      "role": 1,
+      "choices": [
+        0,
+        1,
+        0,
+        1,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "mobile-1-01011",
+      "role": 1,
+      "choices": [
+        0,
+        1,
+        0,
+        1,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "mobile-1-01100",
+      "role": 1,
+      "choices": [
+        0,
+        1,
+        1,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "mobile-1-01101",
+      "role": 1,
+      "choices": [
+        0,
+        1,
+        1,
+        0,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "mobile-1-01110",
+      "role": 1,
+      "choices": [
+        0,
+        1,
+        1,
+        1,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "mobile-1-01111",
+      "role": 1,
+      "choices": [
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "mobile-2-mission",
+      "role": 2,
+      "choices": [
+        0,
+        0
+      ],
+      "end": "미션 성공!",
+      "steps": 19
+    },
+    {
+      "label": "mobile-2-1000",
+      "role": 2,
+      "choices": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 31
+    },
+    {
+      "label": "mobile-2-1001",
+      "role": 2,
+      "choices": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 31
+    },
+    {
+      "label": "mobile-2-1010",
+      "role": 2,
+      "choices": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 31
+    },
+    {
+      "label": "mobile-2-1011",
+      "role": 2,
+      "choices": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 31
+    },
+    {
+      "label": "mobile-2-1100",
+      "role": 2,
+      "choices": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 30
+    },
+    {
+      "label": "mobile-2-1101",
+      "role": 2,
+      "choices": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 30
+    },
+    {
+      "label": "mobile-2-1110",
+      "role": 2,
+      "choices": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 30
+    },
+    {
+      "label": "mobile-2-1111",
+      "role": 2,
+      "choices": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 30
+    },
+    {
+      "label": "mobile-2-01000",
+      "role": 2,
+      "choices": [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 37
+    },
+    {
+      "label": "mobile-2-01001",
+      "role": 2,
+      "choices": [
+        0,
+        1,
+        0,
+        0,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 37
+    },
+    {
+      "label": "mobile-2-01010",
+      "role": 2,
+      "choices": [
+        0,
+        1,
+        0,
+        1,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 37
+    },
+    {
+      "label": "mobile-2-01011",
+      "role": 2,
+      "choices": [
+        0,
+        1,
+        0,
+        1,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 37
+    },
+    {
+      "label": "mobile-2-01100",
+      "role": 2,
+      "choices": [
+        0,
+        1,
+        1,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "mobile-2-01101",
+      "role": 2,
+      "choices": [
+        0,
+        1,
+        1,
+        0,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "mobile-2-01110",
+      "role": 2,
+      "choices": [
+        0,
+        1,
+        1,
+        1,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "mobile-2-01111",
+      "role": 2,
+      "choices": [
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "small-mobile-mission",
+      "role": 0,
+      "choices": [
+        0,
+        0
+      ],
+      "end": "미션 성공!",
+      "steps": 19
+    },
+    {
+      "label": "small-mobile-0-01000",
+      "role": 0,
+      "choices": [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "small-mobile-1-01000",
+      "role": 1,
+      "choices": [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "small-mobile-2-01000",
+      "role": 2,
+      "choices": [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 37
+    },
+    {
+      "label": "landscape-mission",
+      "role": 0,
+      "choices": [
+        0,
+        0
+      ],
+      "end": "미션 성공!",
+      "steps": 19
+    },
+    {
+      "label": "landscape-0-01000",
+      "role": 0,
+      "choices": [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "landscape-1-01000",
+      "role": 1,
+      "choices": [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "landscape-2-01000",
+      "role": 2,
+      "choices": [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 37
+    },
+    {
+      "label": "tablet-mission",
+      "role": 0,
+      "choices": [
+        0,
+        0
+      ],
+      "end": "미션 성공!",
+      "steps": 19
+    },
+    {
+      "label": "tablet-0-01000",
+      "role": 0,
+      "choices": [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "tablet-1-01000",
+      "role": 1,
+      "choices": [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "tablet-2-01000",
+      "role": 2,
+      "choices": [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 37
+    },
+    {
+      "label": "laptop-mission",
+      "role": 0,
+      "choices": [
+        0,
+        0
+      ],
+      "end": "미션 성공!",
+      "steps": 19
+    },
+    {
+      "label": "laptop-0-01000",
+      "role": 0,
+      "choices": [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "laptop-1-01000",
+      "role": 1,
+      "choices": [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 36
+    },
+    {
+      "label": "laptop-2-01000",
+      "role": 2,
+      "choices": [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "end": "미션 실패!",
+      "steps": 37
+    }
+  ],
+  "issues": [],
+  "errors": [],
+  "images": [
+    {
+      "key": "road",
+      "width": 1440,
+      "height": 810
+    },
+    {
+      "key": "inn",
+      "width": 362,
+      "height": 204
+    },
+    {
+      "key": "city",
+      "width": 752,
+      "height": 423
+    },
+    {
+      "key": "vista",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "priest",
+      "width": 184,
+      "height": 327
+    },
+    {
+      "key": "samaritan",
+      "width": 263,
+      "height": 324
+    },
+    {
+      "key": "merchant",
+      "width": 276,
+      "height": 321
+    },
+    {
+      "key": "wounded",
+      "width": 643,
+      "height": 342
+    },
+    {
+      "key": "priest_normal",
+      "width": 84,
+      "height": 82
+    },
+    {
+      "key": "priest_happy",
+      "width": 84,
+      "height": 82
+    },
+    {
+      "key": "priest_surprise",
+      "width": 84,
+      "height": 82
+    },
+    {
+      "key": "priest_worry",
+      "width": 84,
+      "height": 82
+    },
+    {
+      "key": "priest_resolve",
+      "width": 84,
+      "height": 82
+    },
+    {
+      "key": "priest_intro",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "key": "priest_inn",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "priest_win",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "priest_lose",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "priest_care0",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "priest_care1",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "priest_last0",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "priest_last1",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "samaritan_normal",
+      "width": 84,
+      "height": 82
+    },
+    {
+      "key": "samaritan_happy",
+      "width": 84,
+      "height": 82
+    },
+    {
+      "key": "samaritan_surprise",
+      "width": 84,
+      "height": 82
+    },
+    {
+      "key": "samaritan_worry",
+      "width": 84,
+      "height": 82
+    },
+    {
+      "key": "samaritan_resolve",
+      "width": 84,
+      "height": 82
+    },
+    {
+      "key": "samaritan_intro",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "key": "samaritan_inn",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "samaritan_win",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "samaritan_lose",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "samaritan_care0",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "samaritan_care1",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "samaritan_carry0",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "samaritan_carry1",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "samaritan_last0",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "samaritan_last1",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "merchant_normal",
+      "width": 84,
+      "height": 82
+    },
+    {
+      "key": "merchant_happy",
+      "width": 84,
+      "height": 82
+    },
+    {
+      "key": "merchant_surprise",
+      "width": 84,
+      "height": 82
+    },
+    {
+      "key": "merchant_worry",
+      "width": 84,
+      "height": 82
+    },
+    {
+      "key": "merchant_resolve",
+      "width": 84,
+      "height": 82
+    },
+    {
+      "key": "merchant_intro",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "merchant_inn",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "merchant_win",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "merchant_lose",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "merchant_care0",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "merchant_care1",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "merchant_last0",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "merchant_last1",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "priest_turnback",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "key": "samaritan_turnback",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "key": "merchant_turnback",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "merchant_carry0_g0",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "priest_carry1_g0",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "merchant_carry1_g0",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "priest_carry0_g0",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "priest_carry0_g1",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "merchant_carry0_g1",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "priest_carry1_g1",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "merchant_carry1_g1",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "discovery",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "key": "reflection",
+      "width": 1600,
+      "height": 900
+    }
+  ],
+  "screenshots": [
+    "desktop-mission-start.png",
+    "desktop-mission-story.png",
+    "desktop-mission-choice.png",
+    "desktop-mission-ending.png",
+    "desktop-mission-reflection.png",
+    "desktop-1-01000-start.png",
+    "desktop-1-01000-story.png",
+    "desktop-1-01000-choice.png",
+    "desktop-1-01000-ending.png",
+    "desktop-1-01000-reflection.png",
+    "mobile-mission-start.png",
+    "mobile-mission-story.png",
+    "mobile-mission-choice.png",
+    "mobile-mission-ending.png",
+    "mobile-mission-reflection.png",
+    "mobile-1-01000-start.png",
+    "mobile-1-01000-story.png",
+    "mobile-1-01000-choice.png",
+    "mobile-1-01000-ending.png",
+    "mobile-1-01000-reflection.png",
+    "small-mobile-mission-start.png",
+    "small-mobile-mission-story.png",
+    "small-mobile-mission-choice.png",
+    "small-mobile-mission-ending.png",
+    "small-mobile-mission-reflection.png",
+    "small-mobile-1-01000-start.png",
+    "small-mobile-1-01000-story.png",
+    "small-mobile-1-01000-choice.png",
+    "small-mobile-1-01000-ending.png",
+    "small-mobile-1-01000-reflection.png",
+    "landscape-mission-start.png",
+    "landscape-mission-story.png",
+    "landscape-mission-choice.png",
+    "landscape-mission-ending.png",
+    "landscape-mission-reflection.png",
+    "landscape-1-01000-start.png",
+    "landscape-1-01000-story.png",
+    "landscape-1-01000-choice.png",
+    "landscape-1-01000-ending.png",
+    "landscape-1-01000-reflection.png",
+    "tablet-mission-start.png",
+    "tablet-mission-story.png",
+    "tablet-mission-choice.png",
+    "tablet-mission-ending.png",
+    "tablet-mission-reflection.png",
+    "tablet-1-01000-start.png",
+    "tablet-1-01000-story.png",
+    "tablet-1-01000-choice.png",
+    "tablet-1-01000-ending.png",
+    "tablet-1-01000-reflection.png",
+    "laptop-mission-start.png",
+    "laptop-mission-story.png",
+    "laptop-mission-choice.png",
+    "laptop-mission-ending.png",
+    "laptop-mission-reflection.png",
+    "laptop-1-01000-start.png",
+    "laptop-1-01000-story.png",
+    "laptop-1-01000-choice.png",
+    "laptop-1-01000-ending.png",
+    "laptop-1-01000-reflection.png",
+    "fullscreen.png"
+  ],
+  "fullscreen": {
+    "active": true,
+    "width": 1920,
+    "height": 1080,
+    "frame": {
+      "x": 0,
+      "y": 0,
+      "width": 1920,
+      "height": 1080,
+      "top": 0,
+      "right": 1920,
+      "bottom": 1080,
+      "left": 0
+    }
+  },
+  "fullscreenExited": true,
+  "focusedRestart": true,
+  "keyboardRestart": true,
+  "touch": "“해 지기 전에 여리고에 모입시다. 내일 아침에 같이 출발해야 하니까요!”",
+  "imageValidation": "All 62 image references revalidated sequentially after a transient concurrent-decoding failure."
+}
