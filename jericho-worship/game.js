@@ -179,7 +179,7 @@ function pickFinal(i){
  ]);
 }
 function current(){return game.queue[game.step]}
-function next(){const t=current()?.type;if(t!=='story'&&t!=='ending')return;game.step=Math.min(game.queue.length-1,game.step+1);render()}
+function next(){if(renderPending||passageActive)return;const t=current()?.type;if(t!=='story'&&t!=='ending')return;game.step=Math.min(game.queue.length-1,game.step+1);render()}
 function restart(){game={dayPhase:'day',missionExpired:false,clockScene:null,inventoryProgress:{give:null,carry:null,final:null,trade:null},role:null,route:null,returned:false,give:null,carry:null,final:null,step:0,queue:[],event:'',scene:'select'};render()}
 function mk(tag,cls,txt){const n=document.createElement(tag);if(cls)n.className=cls;if(txt!==undefined)n.textContent=txt;return n}
 function getFace(s){if(s.face==='wounded')return ART.wounded;if(s.face)return ART[s.face];const role=game.role;return ART[role+'_'+(s.expr||'normal')]}
@@ -302,12 +302,29 @@ function pictureFor(s){
 }
 
 
+let renderRevision=0,renderPending=false,passageActive=false,passageTimer=null;
+const artLoads=new Map();
+function prepareArt(key){
+ const src=ART[key];
+ if(!src)return Promise.resolve();
+ if(!artLoads.has(src)){
+  const image=new Image();image.src=src;
+  const ready=image.decode().catch(error=>{artLoads.delete(src);throw error});
+  artLoads.set(src,ready);
+ }
+ return artLoads.get(src);
+}
+function stopTimePassage(){
+ clearTimeout(passageTimer);passageTimer=null;passageActive=false;
+ $('timePassage').classList.add('hide');
+ $('viewport').classList.remove('is-time-passage');
+}
 function renderClock(s){
  const label=$('missionName'),deadline=$('missionDeadline'),passage=$('timePassage');
  if(!s){
   $('viewport').dataset.dayPhase='day';
   label.classList.toggle('mission-expired',false);label.classList.toggle('just-expired',false);
-  deadline.classList.add('hide');deadline.textContent='';passage.classList.add('hide');return;
+  deadline.classList.add('hide');deadline.textContent='';stopTimePassage();return;
  }
  const newlyExpired=!game.missionExpired&&!!s.missionExpired;
  if(s.timeOfDay)game.dayPhase=s.timeOfDay;
@@ -324,20 +341,31 @@ function renderClock(s){
   $('stageMark').textContent='주막 · '+phase;
  }
  if(game.clockScene!==s){
+  stopTimePassage();
   game.clockScene=s;
-  if(s.timePassage){
-   $('passageBefore').textContent=s.timePassage==='vigil'?'밤이 지나고…':'시간이 흐르고…';
-   passage.className='time-passage passage-'+s.timePassage;
-  }else passage.classList.add('hide');
+  if(s.timePassage&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
+   passageActive=true;
+   passage.className='time-passage';
+   $('viewport').classList.add('is-time-passage');
+   passageTimer=setTimeout(()=>{if(current()===s)stopTimePassage()},1600);
+  }
  }
 }
 
-function render(){
+async function render(){
+ const revision=++renderRevision;
  const s=current();const role=game.role;const r=R[role];const select=!s;
+ const pic=pictureFor(s);
+ renderPending=true;
+ $('viewport').setAttribute('aria-busy','true');
+ let pictureReady=false;
+ try{await prepareArt(pic);pictureReady=true}catch(error){/* Keep the previous picture if loading fails. */}
+ if(revision!==renderRevision)return;
+ renderPending=false;
+ $('viewport').setAttribute('aria-busy','false');
  $('start').classList.toggle('hide',!select);$('storyPanel').classList.toggle('hide',select||s.type!=='story');$('choicePanel').classList.toggle('hide',select||s.type!=='quiz');$('endingPanel').classList.toggle('hide',select||s.type!=='ending');$('reflectionPanel').classList.toggle('hide',select||s.type!=='reflection');
  renderInventory(s);
- const pic=pictureFor(s);
- $('bg').style.backgroundImage='url('+JSON.stringify(ART[pic]) +')';
+ if(pictureReady)$('bg').style.backgroundImage='url('+JSON.stringify(ART[pic]) +')';
  $('viewport').className='viewport '+(select?'on-start':s.type==='ending'?'on-ending':s.type==='reflection'?'on-reflection':s.type==='quiz'?'on-choice':'on-story')+' scene-'+(s?.bg||'vista')+(s?.close?' close-shot':'')+(s?.sunset?' sunset':'')+(s?.carrying?' on-carry':'');
  $('roleName').textContent=r?r.name:'미션! 여리고 가는 길';$('missionName').textContent=r?r.mission:'누구의 이야기를 시작할까?';
  $('stageMark').textContent=select?'시작':s.type==='ending'||s.type==='reflection'?'이야기의 끝':s.type==='quiz'?'선택의 순간':({city:'여리고',inn:'길가의 주막',road:'광야길'}[s.bg]||'여리고로 가는 길');
@@ -350,6 +378,8 @@ function render(){
  $('loss').classList.add('hide'); // 대사와 같은 내용을 중복 표기하지 않음
  
  renderClock(s);
+ // Decode upcoming pictures without replacing the scene currently on screen.
+ for(const upcoming of game.queue.slice(game.step+1,game.step+4))prepareArt(pictureFor(upcoming)).catch(()=>{});
  if(select){renderStart();return}
  if(s.type==='story'){
   const speaking=!!s.speaker && s.speaker===R[game.role].name && game.give===null;
@@ -397,9 +427,15 @@ document.addEventListener('fullscreenchange',()=>{
  $('fullscreen').setAttribute('aria-label',active?'전체화면 종료':'전체화면');
 });
 $('storyPanel').addEventListener('click',ev=>{if(!ev.target.closest('button'))next()});
+document.addEventListener('click',ev=>{
+ if((renderPending||passageActive)&&!ev.target.closest('#reset,#fullscreen')){
+  ev.preventDefault();ev.stopImmediatePropagation();
+ }
+},true);
 document.addEventListener('keydown',ev=>{
  if(['INPUT','TEXTAREA'].includes(document.activeElement?.tagName))return;
  if(ev.ctrlKey||ev.altKey||ev.metaKey||ev.repeat)return;
+ if((renderPending||passageActive)&&!['r','R','f','F'].includes(ev.key)){ev.preventDefault();return}
  if((ev.key===' '||ev.key==='Enter')&&document.activeElement?.closest('button'))return;
  if(ev.key==='f'||ev.key==='F'){$('fullscreen').click();return}
  if((ev.key===' '||ev.key==='Enter')&&['story','ending'].includes(current()?.type)){ev.preventDefault();next();return}

@@ -83,17 +83,14 @@
 .viewport[data-day-phase="night"]:not(.on-reflection) #bg{filter:brightness(.8) saturate(.85)}
 .viewport[data-day-phase="morning"]:not(.on-reflection) #bg{filter:brightness(1.05) saturate(.96)}
 .viewport[data-day-phase="sunset"]:not(.on-reflection) #bg{filter:sepia(.15) brightness(.88) saturate(1.05)}
-.time-passage{position:absolute;inset:0;z-index:22;display:grid;place-items:center;background:#06121c;pointer-events:none;animation:dawnVeil 3.2s ease both}
-.passage-before,.passage-after{position:absolute;top:39%;left:8%;right:8%;text-align:center;font-size:3.8cqw;font-weight:850;letter-spacing:-.04em;color:#f5ead7;text-shadow:0 .2cqw 1cqw #06121c}
-.passage-before{animation:nightWords 3.2s ease both}
-.passage-after{animation:morningWords 3.2s ease both}
-@keyframes dawnVeil{0%,20%{background:#06121c}62%{background:#06121c88}100%{background:#06121c00}}
-@keyframes nightWords{0%{opacity:0;transform:translateY(.4cqw)}12%,30%{opacity:1;transform:none}44%,100%{opacity:0}}
-@keyframes morningWords{0%,42%{opacity:0}57%,82%{opacity:1}100%{opacity:0}}
+.time-passage{position:absolute;inset:0;z-index:22;display:grid;place-items:center;background:#06121cb8;pointer-events:auto;animation:morningCaption 1.6s ease both}
+.passage-after{text-align:center;padding:24px;font-size:3.8cqw;font-weight:850;letter-spacing:-.04em;color:#f5ead7;text-shadow:0 .2cqw 1cqw #06121c}
+.is-time-passage .story-panel,.is-time-passage .head,.is-time-passage .inventory{visibility:hidden;pointer-events:none}
+@keyframes morningCaption{0%,100%{opacity:0}15%,85%{opacity:1}}
 @keyframes missionFades{from{opacity:1;text-decoration-color:transparent}to{opacity:.58;text-decoration-color:#c3c7bb}}
 @keyframes deadlineAppears{from{opacity:0}to{opacity:1}}
 .on-start .time-passage,.on-ending .time-passage,.on-reflection .time-passage{display:none}
-@media(prefers-reduced-motion:reduce){.time-passage,.passage-before,.passage-after,#missionName.just-expired,.toplabel .deadline-note{animation:none}.time-passage{background:transparent}.passage-before,.passage-after{display:none}}
+@media(prefers-reduced-motion:reduce){.time-passage,#missionName.just-expired,.toplabel .deadline-note{animation:none}}
 
 .controls-help{margin:0;text-align:center;font-size:clamp(11px,1.1cqw,18px);color:#e9d6b0}
 button{touch-action:manipulation}
@@ -127,7 +124,7 @@ button:focus-visible{outline:3px solid #fff2b4;outline-offset:3px}
  .question{font-size:21px;line-height:1.45;margin-bottom:14px}.options{grid-template-columns:1fr;gap:12px}.option{padding:14px;gap:10px;min-height:80px;border-radius:10px}.option-num{font-size:16px;min-width:28px;height:28px}.option-lines{gap:8px}.option strong{font-size:17px;line-height:1.5}.option-but{font-size:15px;line-height:1.5}
  .ending-panel{gap:16px;padding:28px 18px}.end-role{font-size:16px}.end-title{font-size:36px}.end-sub{font-size:24px}.end-story{font-size:16px}.again{font-size:17px;min-height:48px;padding:12px 20px}
  .reflection-panel{position:absolute;inset:0;min-height:100dvh;padding:24px;background:linear-gradient(#08121c66,#050d16ef)}.reflection-question{font-size:30px;max-width:100%}.reflection-restart{font-size:16px;min-height:48px;padding:12px 18px}
- .time-passage{position:fixed}.passage-before,.passage-after{font-size:28px}
+ .time-passage{position:fixed}.passage-after{font-size:28px}
 }
 
 

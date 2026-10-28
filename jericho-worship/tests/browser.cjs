@@ -5,6 +5,7 @@ const url = process.env.BASE_URL || 'file:///' + path.resolve(__dirname, '../ind
 const out = path.resolve(__dirname, '../qa');
 fs.mkdirSync(out,{recursive:true});
 const results = {routes:[],issues:[],errors:[],images:[],screenshots:[]};
+async function ready(page){await page.waitForFunction(()=>document.querySelector('main').getAttribute('aria-busy')==='false'&&!document.querySelector('main').classList.contains('is-time-passage'))}
 async function audit(page,label){
  const issues=await page.evaluate(()=>{
   const issues=[];const main=document.querySelector('main').getBoundingClientRect();
@@ -24,10 +25,12 @@ async function audit(page,label){
 async function shot(page,name){await page.screenshot({path:path.join(out,name+'.png'),fullPage:true});results.screenshots.push(name+'.png')}
 async function run(page,role,choices,label,capture=false,keyboard=false){
  await page.goto(url);
+ await ready(page);
  if(capture)await shot(page,label+'-start');
  if(keyboard)await page.locator('body').press(String(role+1));else await page.locator('.role-card').nth(role).click();
  let decision=0,steps=0,end='';
  while(++steps<100){
+  await ready(page);
   await audit(page,label+':'+steps);
   if(await page.locator('#storyPanel').isVisible()){
    if(capture&&steps===1)await shot(page,label+'-story');
@@ -44,6 +47,7 @@ async function run(page,role,choices,label,capture=false,keyboard=false){
   }else if(await page.locator('#reflectionPanel').isVisible()){
    if(capture)await shot(page,label+'-reflection');
    await page.locator('#reflectionRestart').click();
+   await ready(page);
    if(!await page.locator('#start').isVisible())throw Error('Restart failed');
    results.routes.push({label,role,choices,end,steps});return;
   }else throw Error('Unknown screen '+label);
@@ -54,7 +58,7 @@ async function run(page,role,choices,label,capture=false,keyboard=false){
  const browser=await chromium.launch({channel:'chrome',headless:true});
  const sizes=process.env.QUICK?[['desktop',1920,1080,false]]:[['desktop',1920,1080,true],['mobile',390,844,true],['small-mobile',320,568,false],['landscape',844,390,false],['tablet',768,1024,false],['laptop',1366,768,false]];
  for(const [label,width,height,all] of sizes){
-  const page=await browser.newPage({viewport:{width,height},isMobile:width<900,hasTouch:width<900});
+  const page=await browser.newPage({viewport:{width,height},isMobile:width<900,hasTouch:width<900,reducedMotion:'reduce'});
   page.on('pageerror',e=>results.errors.push({label,error:String(e)}));
   page.on('console',m=>{if(m.type()==='error')results.errors.push({label,error:m.text()})});
   await run(page,0,[0,0],label+'-mission',true,true);
@@ -70,6 +74,7 @@ async function run(page,role,choices,label,capture=false,keyboard=false){
  }
  const page=await browser.newPage({viewport:{width:1920,height:1080}});
  await page.goto(url);
+ await ready(page);
  results.images=await page.evaluate(async()=>{
   const images=[];
   for(const [key,src] of Object.entries(ART)){
@@ -87,12 +92,15 @@ async function run(page,role,choices,label,capture=false,keyboard=false){
  results.fullscreenExited=await page.evaluate(()=>!document.fullscreenElement);
  // A focused restart button must activate itself, without also advancing a line.
  await page.locator('.role-card').first().click();
+ await ready(page);
  await page.locator('#reset').focus();await page.keyboard.press('Enter');
+ await ready(page);
  results.focusedRestart=await page.locator('#start').isVisible();
  await page.keyboard.press('3');await page.keyboard.press('r');
+ await ready(page);
  results.keyboardRestart=await page.locator('#start').isVisible();
  const touch=await browser.newPage({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
- await touch.goto(url);await touch.locator('.role-card').nth(1).tap();await touch.locator('#next').tap();
+ await touch.goto(url);await ready(touch);await touch.locator('.role-card').nth(1).tap();await ready(touch);await touch.locator('#next').tap();await ready(touch);
  results.touch=await touch.locator('#dialogue').innerText();
  await browser.close();
  fs.writeFileSync(path.join(out,'results.json'),JSON.stringify(results,null,2));

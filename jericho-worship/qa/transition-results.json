@@ -1,0 +1,96 @@
+{
+  "captions": [
+    {
+      "device": "desktop",
+      "role": 0,
+      "final": 0,
+      "captionCount": 1,
+      "passed": true
+    },
+    {
+      "device": "desktop",
+      "role": 0,
+      "final": 1,
+      "captionCount": 1,
+      "passed": true
+    },
+    {
+      "device": "desktop",
+      "role": 1,
+      "final": 0,
+      "captionCount": 1,
+      "passed": true
+    },
+    {
+      "device": "desktop",
+      "role": 1,
+      "final": 1,
+      "captionCount": 1,
+      "passed": true
+    },
+    {
+      "device": "desktop",
+      "role": 2,
+      "final": 0,
+      "captionCount": 1,
+      "passed": true
+    },
+    {
+      "device": "desktop",
+      "role": 2,
+      "final": 1,
+      "captionCount": 1,
+      "passed": true
+    },
+    {
+      "device": "mobile",
+      "role": 0,
+      "final": 0,
+      "captionCount": 1,
+      "passed": true
+    },
+    {
+      "device": "mobile",
+      "role": 0,
+      "final": 1,
+      "captionCount": 1,
+      "passed": true
+    },
+    {
+      "device": "mobile",
+      "role": 1,
+      "final": 0,
+      "captionCount": 1,
+      "passed": true
+    },
+    {
+      "device": "mobile",
+      "role": 1,
+      "final": 1,
+      "captionCount": 1,
+      "passed": true
+    },
+    {
+      "device": "mobile",
+      "role": 2,
+      "final": 0,
+      "captionCount": 1,
+      "passed": true
+    },
+    {
+      "device": "mobile",
+      "role": 2,
+      "final": 1,
+      "captionCount": 1,
+      "passed": true
+    }
+  ],
+  "coldLoad": {
+    "delayMs": 900,
+    "keptPreviousFrame": true,
+    "noSkippedScene": true
+  },
+  "errors": [],
+  "resetDuringLoad": true,
+  "reducedMotion": true
+}

@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "test": "node tests/browser.cjs"
+    "test": "node tests/browser.cjs",
+    "test:transitions": "node tests/transitions.cjs"
   },
   "devDependencies": {
     "playwright": "1.62.1"
